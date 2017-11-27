@@ -30,6 +30,7 @@ $('.logoclick').click(function(){
 		$('#songplayer').get(0).pause();
 		$('body').css('background-image', '');
 		$('body').css('background', '');
+		georgebackground = false;
 	}
 	else if(gifbackground){
 		gifbackground = false;
