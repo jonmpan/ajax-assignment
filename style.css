@@ -183,3 +183,7 @@ img {
 	text-align: center;
 	background: rgba(256,256,256,.5);
 }
+
+.logoclick:hover {
+	opacity: .8;
+}

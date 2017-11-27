@@ -14,6 +14,22 @@ var jake = new Audio('media/jake.mp3');
 var mathematical = new Audio('media/mathematical.mp3');
 var swoosh = new Audio('media/swoosh.mp3');
 var fail = new Audio('media/fail.mp3');
+var gifbackground = false;
+
+$('.logoclick').click(function(){
+	if(gifbackground){
+		gifbackground = false;
+		console.log(gifbackground);
+		$('body').css('background-image', '');
+		$('body').css('background', '');
+	}
+	else{
+		gifbackground = true;
+		console.log(gifbackground);
+		$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
+	}
+	
+})
 
 $('#georgeyoo').click(function(){
 	// $('#videocontainer').empty();
@@ -111,8 +127,7 @@ $.ajax({
 	}
 	else {
 		console.log('Images: '+response.data.length+'');
-		// $('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
-	    for (var i = 0; i<response.data.length; i+=4){
+		for (var i = 0; i<response.data.length; i+=4){
 			var i1=i+1;
 			var i2=i+2;
 			var i3=i+3;
@@ -139,6 +154,12 @@ $.ajax({
 	    				console.log(j);
 	    				changeImg.attr("src",""+object.data[j].images.downsized.url+"").css('opacity', '1');
 					});	    		
+	    }
+	    if(gifbackground){
+	    	$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
+	    }
+	    else{
+	    	$('body').css('background-image', '');
 	    }
 	}
     });
