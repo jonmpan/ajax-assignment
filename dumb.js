@@ -100,7 +100,7 @@ $.ajax({
 	}
 	else {
 		console.log('Images: '+response.data.length+'');
-		// $('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
+		$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
 	    for (var i = 0; i<response.data.length; i+=4){
 			var i1=i+1;
 			var i2=i+2;
