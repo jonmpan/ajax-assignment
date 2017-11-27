@@ -19,68 +19,59 @@ var gifbackground = false;
 var vidplaying = false;
 var georgebackground = false;
 
+var reset = function(){
+	gifbackground = false;
+	vidplaying = false;
+	georgebackground = false;
+	$('#songplayer').get(0).pause();
+	$('#songplayer2').get(0).pause();
+	document.getElementById('cirnomathclass').pause();
+	$('#cirnomathclass').hide();
+	$('body').css('background-image', '');
+	$('body').css('background', '');
+}
+
 $('.logoclick').click(function(){
 	if(vidplaying){
-		document.getElementById('cirnomathclass').pause();
-		$('body').css('background-image', '');
-		$('body').css('background', '');
-		$('#cirnomathclass').hide();
-		vidplaying=false;
+		reset();
 	}
 	else if(georgebackground){
-		$('#songplayer').get(0).pause();
-		$('body').css('background-image', '');
-		$('body').css('background', '');
-		georgebackground = false;
+		reset();
 	}
 	else if(gifbackground){
-		gifbackground = false;
-		console.log(gifbackground);
-		$('body').css('background-image', '');
-		$('body').css('background', '');
-		document.getElementById('cirnomathclass').pause();
-		$('#cirnomathclass').hide();
-		$('#songplayer').get(0).pause();
-		$('#songplayer2').get(0).pause();
+		reset();
 	}
 	else{
+		reset();
 		gifbackground = true;
 		$('#songplayer2').get(0).play();
-		console.log(gifbackground);
 		if(object.data[0]){
 			$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
 		}
 		else{
-			$('body').css('background-image', 'url(images/george.gif)');
+			reset();
+			georgebackground=true;
+			$('#songplayer').get(0).play();
+			$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');
 		}
 	}
 })
 
 $('#georgeyoo').click(function(){
-	gifbackground = false;
+	reset();
 	georgebackground = true;
-	vidplaying=false;
-	// $('#videocontainer').empty();
-	$('#songplayer2').get(0).pause();
 	$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');
 	$('#songplayer').get(0).play();
-	document.getElementById('cirnomathclass').pause();
-	$('#cirnomathclass').hide();
 	$('#gifs').empty();
 	$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">N0 R3SUL75...</div><div class="col-xs-3"></div></div>');
 	$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">1337 TA 7H0UGH!</div><div class="col-xs-3"></div></div>');
 });
 
 $('#geddan').click(function(){
-	gifbackground = false;
+	reset();
 	vidplaying=true;
-	georgebackground = false;
-	// $('#videocontainer').empty();
-	// $('#videocontainer').append('<video id="cirnomathclass" autoplay loop><source src="media/cirnomathclass.mp4" type="video/mp4"></video>');
-	$('#songplayer2').get(0).pause();
 	$('body').css('background-image', '').css('background-color', '#FF9C00');
 	$('#videocontainer').show();
-	$('#songplayer').get(0).pause();
 	document.getElementById('cirnomathclass').play();
 	$('#cirnomathclass').show();
 	$('#gifs').empty();
@@ -153,15 +144,17 @@ $.ajax({
 	    rowNum = 1;
 	    object = response;
 	if(response.data.length<1){
+		reset();
+		georgebackground = true;
+		$('#songplayer').get(0).play();
+		$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');
 		swoosh.pause();
 		fail.play();
 		$('#gifs').empty();
-		console.log('Images: 0');
 		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">NO RESULTS...</div><div class="col-xs-3"></div></div>');
 		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">TRY SOMETHING ELSE!</div><div class="col-xs-3"></div></div>');		
 	}
 	else {
-		console.log('Images: '+response.data.length+'');
 		for (var i = 0; i<response.data.length; i+=4){
 			var i1=i+1;
 			var i2=i+2;
@@ -199,11 +192,6 @@ $.ajax({
 	}
     });
 }
-
-// function playtyping(){
-// 	typing.play();
-// }
-// playtyping();
 
 getgifs();
 
