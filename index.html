@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- link rel="stylesheet" type="text/css" href="css/buttons.css"> -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <div id="buttons" align="center">
+    <button id="bearded dragons" value="bearded dragon" class="buttonclick btn btn-6 btn-6b">Bearded Dragons</button>
+    <button id="kittens" value="kittens" class="buttonclick btn btn-6 btn-6b">Kittens</button>
+    <button id="puppies" value="puppies" class="buttonclick btn btn-6 btn-6b">Puppies</button>
+    <button id="jake the dog" value="jake the dog" class="buttonclick btn btn-6 btn-6b">jake the dog</button>
+    <button id="finn the human" value="finn the human" class="buttonclick btn btn-6 btn-6b">finn the human</button>
+    <button id="fwea12315wefa" value="fwea12315wefa" class="buttonclick btn btn-6 btn-6b">No Results</button>
+  </div>
+
+  <div id="formContainer" class="row">
+    <div class="col-xs-3"></div>
+
+      <div class="col-xs-3" align="center">
+        <form id="form1">
+          <input onClick="this.setSelectionRange(0, this.value.length)" type="text" name="Search Here" value="cute" autocomplete="off">
+          <input class="btn-submit btn-6 btn-6a btn-icon-only icon-heart" id="formButton" type="button" value="submit">
+        </form>
+      </div>
+
+      <div class="col-xs-3" align="center">
+        <div id="numberOfImages" class="row">
+          QUANTITY
+        </div>
+        <div id="imgCounterContainer" class="row">
+          <button id="oneMinus" class="btn-small btn-6 btn-6a col-xs-4 noselect counterstyle">-</button>
+          <button id="imgCounter" class="btn-small btn-6 col-xs-4 noselect counterstyle" disabled>20</button>
+          <button id="onePlus" class="btn-small btn-6 btn-6a col-xs-4 noselect counterstyle">+</button>
+        </div>
+      </div>
+
+    <div class="col-xs-3"></div>
+  </div>
+
+  <div class="row" id="giphyLogo" align="center">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4">
+      <img src="images/giphylogo.png">
+    </div>
+    <div class="col-xs-4" id="imagesFoundContainer">
+      <div id="imagesFound">Images: 20</div>
+    </div>
+  </div>
+
+  <div id="gifs">
+  </div>
+
+</div>
+
+<footer>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
