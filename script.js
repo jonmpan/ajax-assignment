@@ -160,6 +160,7 @@ $.ajax({
 	    }
 	    else{
 	    	$('body').css('background-image', '');
+	    	$('body').css('background', '');
 	    }
 	}
     });
