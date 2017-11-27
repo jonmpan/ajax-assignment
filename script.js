@@ -1,5 +1,5 @@
 // urloldkey = 'https://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC'
-var custom = 'bearded dragon'
+var custom = 'cats typing'
 var imagecount = 20;
 var queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 var object;
