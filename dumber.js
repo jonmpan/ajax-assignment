@@ -81,12 +81,12 @@ $('#formButton').click(function(){
 	}
 	else{
 	swoosh.play();
-	$('#buttons').append('<button id="'+customL+'" value="'+customL+'" class="buttonswoosh buttonclick btn btn-6 btn-6b">'+custom+'</button>');
+	$('#buttons').append('<button id="'+customL+'" value="'+customL+'" class="btn btn-6 btn-6b">'+custom+'</button>');
 	document.getElementById(customL).addEventListener("click", function(){
+		swoosh.play();
 		var value = this.value;
 		custom = value;
 		queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
-		swoosh.play();
 		getgifs();
 		});
 	};
@@ -111,7 +111,7 @@ $.ajax({
 	}
 	else {
 		console.log('Images: '+response.data.length+'');
-		// $('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
+		$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
 	    for (var i = 0; i<response.data.length; i+=4){
 			var i1=i+1;
 			var i2=i+2;
