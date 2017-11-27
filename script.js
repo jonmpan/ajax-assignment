@@ -41,11 +41,13 @@ $('.logoclick').click(function(){
 		document.getElementById('cirnomathclass').pause();
 		$('#cirnomathclass').hide();
 		$('#songplayer').get(0).pause();
+		$('#songplayer2').get(0).pause();
 	}
 	else{
 		gifbackground = true;
 		console.log(gifbackground);
 		$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
+		$('#songplayer2').get(0).play();
 	}
 })
 
@@ -54,6 +56,7 @@ $('#georgeyoo').click(function(){
 	georgebackground = true;
 	vidplaying=false;
 	// $('#videocontainer').empty();
+	$('#songplayer2').get(0).pause();
 	$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');
 	$('#songplayer').get(0).play();
 	document.getElementById('cirnomathclass').pause();
@@ -69,6 +72,7 @@ $('#geddan').click(function(){
 	georgebackground = false;
 	// $('#videocontainer').empty();
 	// $('#videocontainer').append('<video id="cirnomathclass" autoplay loop><source src="media/cirnomathclass.mp4" type="video/mp4"></video>');
+	$('#songplayer2').get(0).pause();
 	$('body').css('background-image', '').css('background-color', '#FF9C00');
 	$('#videocontainer').show();
 	$('#songplayer').get(0).pause();
@@ -120,7 +124,6 @@ $('#formButton').click(function(){
 		swoosh.play();
 		custom = x.elements[0].value;
 		queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
-		getgifs();
 	}
 	else{
 	swoosh.play();
