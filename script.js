@@ -15,23 +15,42 @@ var mathematical = new Audio('media/mathematical.mp3');
 var swoosh = new Audio('media/swoosh.mp3');
 var fail = new Audio('media/fail.mp3');
 var gifbackground = false;
+var vidplaying = false;
+var georgebackground = false;
 
 $('.logoclick').click(function(){
-	if(gifbackground){
+	if(vidplaying){
+		document.getElementById('cirnomathclass').pause();
+		$('body').css('background-image', '');
+		$('body').css('background', '');
+		$('#cirnomathclass').hide();
+		vidplaying=false;
+	}
+	else if(georgebackground){
+		$('#songplayer').get(0).pause();
+		$('body').css('background-image', '');
+		$('body').css('background', '');
+	}
+	else if(gifbackground){
 		gifbackground = false;
 		console.log(gifbackground);
 		$('body').css('background-image', '');
 		$('body').css('background', '');
+		document.getElementById('cirnomathclass').pause();
+		$('#cirnomathclass').hide();
+		$('#songplayer').get(0).pause();
 	}
 	else{
 		gifbackground = true;
 		console.log(gifbackground);
 		$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
 	}
-	
 })
 
 $('#georgeyoo').click(function(){
+	gifbackground = false;
+	georgebackground = true;
+	vidplaying=false;
 	// $('#videocontainer').empty();
 	$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');
 	$('#songplayer').get(0).play();
@@ -43,12 +62,18 @@ $('#georgeyoo').click(function(){
 });
 
 $('#geddan').click(function(){
+	gifbackground = false;
+	vidplaying=true;
+	georgebackground = false;
 	// $('#videocontainer').empty();
 	// $('#videocontainer').append('<video id="cirnomathclass" autoplay loop><source src="media/cirnomathclass.mp4" type="video/mp4"></video>');
 	$('body').css('background-image', '').css('background-color', '#FF9C00');
+	$('#videocontainer').show();
 	$('#songplayer').get(0).pause();
 	document.getElementById('cirnomathclass').play();
 	$('#cirnomathclass').show();
+	$('#gifs').empty();
+	$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu wo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zutto  Eternal Love</div><div class="col-xs-1"></div></div>');
 });
 
 $('#onePlus').click(function() {
@@ -159,8 +184,7 @@ $.ajax({
 	    	$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
 	    }
 	    else{
-	    	$('body').css('background-image', '');
-	    	$('body').css('background', '');
+	    	return;
 	    }
 	}
     });
