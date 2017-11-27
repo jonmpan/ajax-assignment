@@ -7,18 +7,7 @@ var dioRoadroller = new Audio('media/dioroadroller.mp3');
 var typing = new Audio('media/typing.mp3');
 var typingslow = new Audio('media/typingslow.mp3');
 var typewriter = new Audio('media/typewriter.mp3');
-
-$('.buttontyping').click(function(){
-	typing.play();
-})
-
-$('.buttontypingslow').click(function(){
-	typingslow.play();
-})
-
-$('.buttontypewriter').click(function(){
-	typewriter.play();
-})
+var thanksobama = new Audio('media/thanksobama.mp3');
 
 $('#georgeyoo').click(function(){
 	// $('#videocontainer').empty();
@@ -151,3 +140,19 @@ $.ajax({
 getgifs();
 
 typing.play();
+
+$('.buttontyping').click(function(){
+	typing.play();
+});
+
+$('.buttontypingslow').click(function(){
+	typingslow.play();
+});
+
+$('.buttontypewriter').click(function(){
+	typewriter.play();
+});
+
+$('.buttonthanksobama').click(function(){
+	thanksobama.play();
+});
