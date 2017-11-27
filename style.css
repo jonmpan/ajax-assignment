@@ -68,6 +68,8 @@
 	color: #226fbe;
 }
 
+
+
 /* Button 6b */
 .btn-6b {
 	border: 4px solid #226fbe;
@@ -186,4 +188,8 @@ img {
 
 .logoclick:hover {
 	opacity: .8;
+}
+
+button:focus {
+	outline:0 !important;
 }
