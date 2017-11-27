@@ -4,6 +4,21 @@ var imagecount = 20;
 var queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 var object;
 var dioRoadroller = new Audio('media/dioroadroller.mp3');
+var typing = new Audio('media/typing.mp3');
+var typingslow = new Audio('media/typingslow.mp3');
+var typewriter = new Audio('media/typewriter.mp3');
+
+$('.buttontyping').click(function(){
+	typing.play();
+})
+
+$('.buttontypingslow').click(function(){
+	typingslow.play();
+})
+
+$('.buttontypewriter').click(function(){
+	typewriter.play();
+})
 
 $('#georgeyoo').click(function(){
 	// $('#videocontainer').empty();
@@ -11,6 +26,9 @@ $('#georgeyoo').click(function(){
 	$('#songplayer').get(0).play();
 	document.getElementById('cirnomathclass').pause();
 	$('#cirnomathclass').hide();
+	$('#gifs').empty();
+	$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">N0 R3SUL75...</div><div class="col-xs-3"></div></div>');
+	$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">1337 TA 7H0UGH!</div><div class="col-xs-3"></div></div>');
 });
 
 $('#geddan').click(function(){
@@ -88,7 +106,8 @@ $.ajax({
 	if(response.data.length<1){
 		$('#gifs').empty();
 		console.log('Images: 0');
-		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">No Results</div><div class="col-xs-3"></div></div>');
+		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">NO RESULTS...</div><div class="col-xs-3"></div></div>');
+		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">TRY SOMETHING ELSE!</div><div class="col-xs-3"></div></div>');		
 	}
 	else {
 		console.log('Images: '+response.data.length+'');
@@ -124,5 +143,11 @@ $.ajax({
     });
 }
 
+// function playtyping(){
+// 	typing.play();
+// }
+// playtyping();
+
 getgifs();
 
+typing.play();
