@@ -74,7 +74,7 @@ $('#geddan').click(function(){
 	document.getElementById('cirnomathclass').play();
 	$('#cirnomathclass').show();
 	$('#gifs').empty();
-	$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu wo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zutto  Eternal Love</div><div class="col-xs-1"></div></div>');
+	$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
 });
 
 $('#onePlus').click(function() {
