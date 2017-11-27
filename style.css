@@ -90,6 +90,7 @@ body, footer {
 
 footer {
 	height: 50px;
+	opacity: 0;
 }
 
 input {
@@ -165,3 +166,20 @@ img {
                                   supported by Chrome and Opera */
 }
 
+#cirnomathclass {
+	width: 95vw;
+	height: 100vh;
+	position: absolute;
+	top: 0vh;
+	left: 2.5vw;
+	z-index: -1;
+	overflow: hidden;
+	display: none;
+}
+
+#noresults {
+	font-size: 48px;
+	font-weight: 700;
+	text-align: center;
+	background: rgba(256,256,256,.5);
+}

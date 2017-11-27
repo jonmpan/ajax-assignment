@@ -3,6 +3,24 @@ var custom = 'cats typing'
 var imagecount = 20;
 var queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 var object;
+var dioRoadroller = new Audio('media/dioroadroller.mp3');
+
+$('#georgeyoo').click(function(){
+	// $('#videocontainer').empty();
+	$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');
+	$('#songplayer').get(0).play();
+	document.getElementById('cirnomathclass').pause();
+	$('#cirnomathclass').hide();
+});
+
+$('#geddan').click(function(){
+	// $('#videocontainer').empty();
+	// $('#videocontainer').append('<video id="cirnomathclass" autoplay loop><source src="media/cirnomathclass.mp4" type="video/mp4"></video>');
+	$('body').css('background-image', '').css('background-color', '#FF9C00');
+	$('#songplayer').get(0).pause();
+	document.getElementById('cirnomathclass').play();
+	$('#cirnomathclass').show();
+});
 
 $('#onePlus').click(function() {
 	if(imagecount<99){
@@ -43,7 +61,7 @@ $('#formButton').click(function(){
 	getgifs();
 
 	if(document.getElementById(customL)){
-		custom = value;
+		custom = x.elements[0].value;
 		queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 		getgifs();
 	}
@@ -68,10 +86,12 @@ $.ajax({
 	    rowNum = 1;
 	    object = response;
 	if(response.data.length<1){
-		$('#imagesFound').text('Images: 0');
+		$('#gifs').empty();
+		console.log('Images: 0');
+		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">No Results</div><div class="col-xs-3"></div></div>');
 	}
 	else {
-		$('#imagesFound').text('Images: '+response.data.length+'');
+		console.log('Images: '+response.data.length+'');
 	    for (var i = 0; i<response.data.length; i+=4){
 			var i1=i+1;
 			var i2=i+2;
@@ -90,7 +110,7 @@ $.ajax({
 	    				var j = changeImg.attr('numvalue');
 	    				console.log('hovered');
 	    				console.log(j);
-	    				changeImg.attr("src",""+object.data[j].images.downsized_still.url+"").css('opacity', '0.6');
+	    				changeImg.attr("src",""+object.data[j].images.downsized_still.url+"").css('opacity', '0.85');
 					});
 				document.getElementById('gif'+i+'').addEventListener("mouseout", function(){
 	    				var changeImg = $(this).children().eq(0).children().eq(0).children().eq(0);
