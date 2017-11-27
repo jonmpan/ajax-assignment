@@ -13,6 +13,7 @@ var meow = new Audio('media/meow.mp3');
 var jake = new Audio('media/jake.mp3');
 var mathematical = new Audio('media/mathematical.mp3');
 var swoosh = new Audio('media/swoosh.mp3');
+var toasty = new Audio('media/toasty.mp3');
 var fail = new Audio('media/fail.mp3');
 var gifbackground = false;
 var vidplaying = false;
@@ -234,4 +235,8 @@ $('.buttonmathematical').click(function(){
 
 $('.buttonswoosh').click(function(){
 	swoosh.play();
+})
+
+$('.buttontoasty').click(function(){
+	toasty.play();
 })
