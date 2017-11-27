@@ -45,9 +45,14 @@ $('.logoclick').click(function(){
 	}
 	else{
 		gifbackground = true;
-		console.log(gifbackground);
-		$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
 		$('#songplayer2').get(0).play();
+		console.log(gifbackground);
+		if(object.data[0]){
+			$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
+		}
+		else{
+			$('body').css('background-image', 'url(images/george.gif)');
+		}
 	}
 })
 
