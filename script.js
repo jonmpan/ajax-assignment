@@ -1,14 +1,14 @@
-// urloldkey = 'http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC'
+// urloldkey = 'https://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC'
 var custom = 'bearded dragon'
 var imagecount = 20;
-var queryURL = 'http://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
+var queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 var object;
 
 $('#onePlus').click(function() {
 	if(imagecount<99){
 	imagecount+=1;
 	$('#imgCounter').text(imagecount);
-	queryURL = 'http://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
+	queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 	}
 });
 
@@ -16,14 +16,14 @@ $('#oneMinus').click(function() {
 	if(imagecount>1){
 	imagecount-=1;
 	$('#imgCounter').text(imagecount);
-	queryURL = 'http://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
+	queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 	}
 });
 
 $('.buttonclick').click(function(){
 	var value = this.value;
 	custom = value;
-	queryURL = 'http://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
+	queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 	getgifs();
 });
 
@@ -39,12 +39,12 @@ $('#formButton').click(function(){
 	custom=x.elements[0].value;
 	console.log(x.elements[0].value);
 	var customL=x.elements[0].value.toLowerCase();
-	queryURL = 'http://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
+	queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 	getgifs();
 
 	if(document.getElementById(customL)){
 		custom = value;
-		queryURL = 'http://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
+		queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 		getgifs();
 	}
 	else{
@@ -52,7 +52,7 @@ $('#formButton').click(function(){
 	document.getElementById(customL).addEventListener("click", function(){
 		var value = this.value;
 		custom = value;
-		queryURL = 'http://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
+		queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 		getgifs();
 		});
 	};
