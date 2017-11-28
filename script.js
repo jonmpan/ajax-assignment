@@ -139,7 +139,7 @@ $('#geddan').click(function(){
 	document.getElementById('geddanvideo').play();
 	$('#geddanvideo').show();
 	$('#gifs').empty();
-	$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
+	$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
 	$('.animatethis').addClass("animated hinge");
 });
 
@@ -185,8 +185,6 @@ $('#formButton').click(function(){
 		swoosh.pause();
 		swoosh.currentTime=0;
 		swoosh.play();
-		custom = x.elements[0].value;
-		queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 	}
 	else{
 		swoosh.pause();
