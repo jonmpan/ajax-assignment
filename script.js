@@ -1,9 +1,10 @@
-// urloldkey = 'https://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC'
-//Add Random Gif Background
+//Variables for URL generation
 var custom = 'cats typing'
 var imagecount = 12;
 var queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
+//Used to store the returned object from Giphy
 var object;
+//Variables to store the sound effects
 var dioRoadroller = new Audio('media/dioroadroller.mp3');
 var typing = new Audio('media/typing.mp3');
 var typingslow = new Audio('media/typingslow.mp3');
@@ -22,10 +23,12 @@ var glassbreak2 = new Audio('media/glassbreak.mp3');
 var ding = new Audio('media/ding.mp3');
 var boing = new Audio('media/boing.mp3');
 var toasty = new Audio('media/toasty.mp3');
+//Booleans for changing the background of the page
 var gifbackground = false;
 var geddanbackground = false;
 var georgebackground = false;
 
+//Stops sound effects function
 var SEStop = function(){
 	typing.pause();
 	typing.currentTime = 0;
@@ -63,10 +66,13 @@ var SEStop = function(){
 	toasty.currentTime = 0;
 }
 
+//Resets background and audio
 var reset = function(){
+	//Empties the text box just for Geddan
 	if(geddanbackground){
 		$('#gifs').empty();
 	}
+	//End Empty Geddan
 	gifbackground = false;
 	geddanbackground = false;
 	georgebackground = false;
@@ -81,6 +87,7 @@ var reset = function(){
 	SEStop();
 }
 
+//Deletes user created buttons
 $('#resetbuttons').click(function(){
 	var parent = document.getElementById("buttons");
 	var x = document.getElementById("buttons").childElementCount;
@@ -102,6 +109,7 @@ $('#resetbuttons').click(function(){
 	}
 });
 
+//Resets the background only if the background has been changed from default
 $('#resetbackground').click(function(){
 	if(gifbackground || georgebackground || geddanbackground){
 		reset();
@@ -113,15 +121,18 @@ $('#resetbackground').click(function(){
 	}
 });
 
+//Turns gif background on and bounces everything
 $('.logoclick').click(function(){
 		reset();
 		gifbackground = true;
 		boing.play();
 		$('#songplayer2').get(0).play();
+		//Checks to see if the AJAX request has any images in it
 		if(object.data.length>0){
 			$('.animatethis').addClass("animated rubberBand infinite");
 			getgifs();
 		}
+		//Sends you to the NO RESULTS section
 		else{
 			reset();
 			gifbackground=true;
@@ -135,6 +146,7 @@ $('.logoclick').click(function(){
 		}
 })
 
+//Initializes George
 $('#george').click(function(){
 	reset();
 	georgebackground = true;
@@ -147,6 +159,7 @@ $('#george').click(function(){
 	$('.animatethis').addClass("animated flip infinite");
 });
 
+//Initializes Geddan
 $('#geddan').click(function(){
 	reset();
 	glassbreak.play();
@@ -160,6 +173,7 @@ $('#geddan').click(function(){
 	$('.animatethis').addClass("animated hinge");
 });
 
+//Counter Section
 $('#onePlus').click(function() {
 	if(imagecount<99){
 	imagecount+=1;
@@ -182,7 +196,10 @@ $('.buttonclick').click(function(){
 	queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 	getgifs();
 });
+//End Counter Section
 
+//Form Section
+//Allows the user to press Enter to submit the form without reloading the page
 $('#form1').keypress(function(e){
 	if(e.keyCode==13){
 	e.preventDefault();
@@ -190,6 +207,7 @@ $('#form1').keypress(function(e){
   	}
 });
 
+//Creates a button if the button doesn't exist
 $('#formButton').click(function(){
 	var x = document.getElementById("form1");
 	custom=x.elements[0].value;
@@ -197,26 +215,29 @@ $('#formButton').click(function(){
 	var customL=x.elements[0].value.toLowerCase();
 	queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 	getgifs();
-
+	//Checks to see if the user's input exists as a button already
 	if(document.getElementById(customL)){
 		SEStop();
 		swoosh.play();
 	}
+	//If the button does not exist, create a button
 	else{
 		SEStop();
 		swoosh.play();
 		$('#buttons').append('<button id="'+customL+'" value="'+customL+'" class="animatethis buttonswoosh buttonclick btn btn-6 btn-6b">'+custom+'</button>');
+		//Adds event listener to the new button to function like the existing buttons
 		document.getElementById(customL).addEventListener("click", function(){
-		var value = this.value;
-		custom = value;
-		queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
-		SEStop();
-		swoosh.play();
-		getgifs();
+			var value = this.value;
+			custom = value;
+			queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
+			SEStop();
+			swoosh.play();
+			getgifs();
 		});
 	};
 });
 
+//Code for AJAX request and appending images
 function getgifs(){
 $('#gifs').empty();
 $.ajax({
@@ -226,6 +247,7 @@ $.ajax({
 	    console.log(response);
 	    rowNum = 1;
 	    object = response;
+	//If AJAX returns no results, creates No Results scenario
 	if(response.data.length<1){
 		reset();
 		gifbackground = true;
@@ -239,6 +261,7 @@ $.ajax({
 		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">TRY SOMETHING ELSE!</div><div class="col-xs-3"></div></div>');		
 		$('.animatethis').addClass("animated rubberBand infinite");
 	}
+	//If AJAX returns results, create Rows and Gifs
 	else {
 		for (var i = 0; i<response.data.length; i+=4){
 			var i1=i+1;
@@ -251,6 +274,7 @@ $.ajax({
 			$('#gifrow'+rowNum+'').append('<div id="gif'+i3+'"></div>');
 			rowNum +=1;
 	    }
+	    //Appends the image and the URL to each image. Adds event listeners for mouse in and mouse out to pause and play in the gifs respectively
 	    for (var i = 0; i < response.data.length; i++) {
 	    	$('#gif'+i+'').append('<div class="animatethis col-xs-3 gifContainer"><a href="'+response.data[i].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i].images.downsized.url+'"></a></div>');
 	    		document.getElementById('gif'+i+'').addEventListener("mouseover", function(){
@@ -266,8 +290,9 @@ $.ajax({
 	    				console.log('out');
 	    				console.log(j);
 	    				changeImg.attr("src",""+object.data[j].images.downsized.url+"").css('opacity', '1');
-					});	    		
+					});
 	    }
+	    	//Adds animation/background based on which background is active
 		    if(gifbackground){
 		    	var r = Math.floor(Math.random()*object.data.length);
 				console.log(r);
@@ -279,7 +304,7 @@ $.ajax({
 				console.log('yes');			
 				$('.animatethis').addClass("animated flip infinite");
 			}
-			if(geddanbackground){
+			else if(geddanbackground){
 				$('.animatethis').addClass("animated hinge");
 				SEStop();
 				glassbreak2.play();
@@ -292,10 +317,11 @@ $.ajax({
     });
 }
 
+//Starts the document with the preset queryURL gifs
 getgifs();
-
 typing.play();
 
+//Sound effects for clicking on buttons
 $('.buttontyping').click(function(){
 	SEStop();
 	typing.play();
