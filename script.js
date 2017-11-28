@@ -1,6 +1,6 @@
 // urloldkey = 'https://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC'
 var custom = 'cats typing'
-var imagecount = 20;
+var imagecount = 12;
 var queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 var object;
 var dioRoadroller = new Audio('media/dioroadroller.mp3');
