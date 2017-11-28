@@ -32,13 +32,7 @@ var reset = function(){
 }
 
 $('.logoclick').click(function(){
-	if(vidplaying){
-		reset();
-	}
-	else if(georgebackground){
-		reset();
-	}
-	else if(gifbackground){
+	if(vidplaying || georgebackground || gifbackground){
 		reset();
 	}
 	else{
@@ -57,7 +51,7 @@ $('.logoclick').click(function(){
 	}
 })
 
-$('#georgeyoo').click(function(){
+$('#george').click(function(){
 	reset();
 	georgebackground = true;
 	$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');

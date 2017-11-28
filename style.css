@@ -139,6 +139,12 @@ input {
 	margin-top: 10px;
 }
 
+
+.logoclick:hover {
+	cursor: pointer;
+	opacity: .6;
+}
+
 #imagesFoundContainer{
 
 }
@@ -184,10 +190,6 @@ img {
 	font-weight: 700;
 	text-align: center;
 	background: rgba(256,256,256,.5);
-}
-
-.logoclick:hover {
-	opacity: .8;
 }
 
 button:focus {
