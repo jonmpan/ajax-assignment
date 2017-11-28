@@ -31,24 +31,46 @@ var reset = function(){
 	$('body').css('background', '');
 }
 
-$('.logoclick').click(function(){
-	if(vidplaying || georgebackground || gifbackground){
-		reset();
+$('#resetbuttons').click(function(){
+	var parent = document.getElementById("buttons");
+	var x = document.getElementById("buttons").childElementCount;
+	var y = document.getElementById("buttons").childElementCount;
+	console.log('#ofButtons '+x+'');
+
+	if(x>12){
+		for (var i = 0; i < y-12; i++) {
+			var child = $('#buttons').children().eq(12);
+			child.detach();
+			var x = document.getElementById("buttons").childElementCount;
+			console.log('Removed a button');
+		}
 	}
 	else{
+		return;
+	}
+});
+
+$('#resetbackground').click(function(){
+	reset();
+});
+
+$('.logoclick').click(function(){
 		reset();
 		gifbackground = true;
 		$('#songplayer2').get(0).play();
 		if(object.data[0]){
 			$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
+			getgifs();
 		}
 		else{
 			reset();
-			georgebackground=true;
-			$('#songplayer').get(0).play();
+			gifbackground=true;
+			$('#songplayer2').get(0).play();
 			$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');
+			$('#gifs').empty();
+			$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">NO RESULTS...</div><div class="col-xs-3"></div></div>');
+			$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">TRY SOMETHING ELSE!</div><div class="col-xs-3"></div></div>');		
 		}
-	}
 })
 
 $('#george').click(function(){
@@ -139,8 +161,8 @@ $.ajax({
 	    object = response;
 	if(response.data.length<1){
 		reset();
-		georgebackground = true;
-		$('#songplayer').get(0).play();
+		gifbackground = true;
+		$('#songplayer2').get(0).play();
 		$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');
 		swoosh.pause();
 		fail.play();

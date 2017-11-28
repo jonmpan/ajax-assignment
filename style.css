@@ -105,6 +105,8 @@ input {
 	font-size: 18px;
 }
 
+
+
 #buttons {
 	margin-top: 0px;
 }
@@ -194,4 +196,22 @@ img {
 
 button:focus {
 	outline:0 !important;
+}
+
+.resetbuttonstyle{
+	padding-top: 10px;
+}
+
+#resetbuttons, #resetbackground{
+	background: red;	
+}
+
+.logoclick {
+	padding-top: 5px;
+}
+
+@media only screen and (max-width: 1000px) {
+	.resetbuttonstyle{
+		padding-top: 3px;
+	}
 }
