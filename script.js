@@ -15,20 +15,53 @@ var mathematical = new Audio('media/mathematical.mp3');
 var swoosh = new Audio('media/swoosh.mp3');
 var toasty = new Audio('media/toasty.mp3');
 var fail = new Audio('media/fail.mp3');
+var explosion = new Audio('media/explosion.mp3');
+var glassbreak = new Audio('media/glassbreak.mp3');
+var glassbreak2 = new Audio('media/glassbreak.mp3');
+var ding = new Audio('media/ding.mp3');
 var gifbackground = false;
-var vidplaying = false;
+var geddanbackground = false;
 var georgebackground = false;
 
 var reset = function(){
 	gifbackground = false;
-	vidplaying = false;
+	geddanbackground = false;
 	georgebackground = false;
 	$('#songplayer').get(0).pause();
 	$('#songplayer2').get(0).pause();
-	document.getElementById('cirnomathclass').pause();
-	$('#cirnomathclass').hide();
+	document.getElementById('geddanvideo').pause();
+	$('#geddanvideo').hide();
 	$('body').css('background-image', '');
 	$('body').css('background', '');
+	$('.animatethis').removeClass("animated rubberBand flip hinge infinite");
+	typing.pause();
+	typing.currentTime = 0;
+	typingslow.pause();
+	typingslow.currentTime = 0;
+	typewriter.pause();
+	typewriter.currentTime = 0;
+	thanksobama.pause();
+	thanksobama.currentTime = 0;
+	rubberduck.pause();
+	rubberduck.currentTime = 0;
+	meow.pause();
+	meow.currentTime = 0;
+	jake.pause();
+	jake.currentTime = 0;
+	mathematical.pause();
+	mathematical.currentTime = 0;
+	swoosh.pause();
+	swoosh.currentTime = 0;
+	toasty.pause();
+	toasty.currentTime = 0;
+	fail.pause();
+	fail.currentTime = 0;
+	explosion.pause();
+	explosion.currentTime = 0;
+	glassbreak.pause();
+	glassbreak.currentTime = 0;
+	glassbreak2.pause();
+	glassbreak2.currentTime = 0;
 }
 
 $('#resetbuttons').click(function(){
@@ -43,6 +76,7 @@ $('#resetbuttons').click(function(){
 			child.detach();
 			var x = document.getElementById("buttons").childElementCount;
 			console.log('Removed a button');
+			explosion.play();
 		}
 	}
 	else{
@@ -51,7 +85,16 @@ $('#resetbuttons').click(function(){
 });
 
 $('#resetbackground').click(function(){
-	reset();
+	if(gifbackground || georgebackground || geddanbackground){
+		ding.pause();
+		ding.currentTime = 0;
+		ding.play();
+		reset();
+		$('#gifs').empty();
+	}
+	else{
+		return;
+	}
 });
 
 $('.logoclick').click(function(){
@@ -59,17 +102,20 @@ $('.logoclick').click(function(){
 		gifbackground = true;
 		$('#songplayer2').get(0).play();
 		if(object.data[0]){
+			console.log('yes');
 			$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
-			getgifs();
+			$('.animatethis').addClass("animated rubberBand infinite");
+			// getgifs();
 		}
 		else{
 			reset();
 			gifbackground=true;
 			$('#songplayer2').get(0).play();
-			$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');
+			$('body').css('background-image', 'url(images/marisaspin.gif)').css('background-color', 'pink');
 			$('#gifs').empty();
-			$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">NO RESULTS...</div><div class="col-xs-3"></div></div>');
-			$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">TRY SOMETHING ELSE!</div><div class="col-xs-3"></div></div>');		
+			$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">NO RESULTS...</div><div class="col-xs-3"></div></div>');
+			$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">TRY SOMETHING ELSE!</div><div class="col-xs-3"></div></div>');		
+			$('.animatethis').addClass("animated rubberBand infinite");
 		}
 })
 
@@ -79,19 +125,22 @@ $('#george').click(function(){
 	$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');
 	$('#songplayer').get(0).play();
 	$('#gifs').empty();
-	$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">N0 R3SUL75...</div><div class="col-xs-3"></div></div>');
-	$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">1337 TA 7H0UGH!</div><div class="col-xs-3"></div></div>');
+	$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">N0 R3SUL75...</div><div class="col-xs-3"></div></div>');
+	$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">1337 TA 7H0UGH!</div><div class="col-xs-3"></div></div>');
+	$('.animatethis').addClass("animated flip infinite");
 });
 
 $('#geddan').click(function(){
 	reset();
-	vidplaying=true;
+	glassbreak.play();
+	geddanbackground=true;
 	$('body').css('background-image', '').css('background-color', '#FF9C00');
 	$('#videocontainer').show();
-	document.getElementById('cirnomathclass').play();
-	$('#cirnomathclass').show();
+	document.getElementById('geddanvideo').play();
+	$('#geddanvideo').show();
 	$('#gifs').empty();
 	$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
+	$('.animatethis').addClass("animated hinge");
 });
 
 $('#onePlus').click(function() {
@@ -133,17 +182,23 @@ $('#formButton').click(function(){
 	getgifs();
 
 	if(document.getElementById(customL)){
+		swoosh.pause();
+		swoosh.currentTime=0;
 		swoosh.play();
 		custom = x.elements[0].value;
 		queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 	}
 	else{
-	swoosh.play();
-	$('#buttons').append('<button id="'+customL+'" value="'+customL+'" class="buttonswoosh buttonclick btn btn-6 btn-6b">'+custom+'</button>');
-	document.getElementById(customL).addEventListener("click", function(){
+		swoosh.pause();
+		swoosh.currentTime=0;
+		swoosh.play();
+		$('#buttons').append('<button id="'+customL+'" value="'+customL+'" class="animatethis buttonswoosh buttonclick btn btn-6 btn-6b">'+custom+'</button>');
+		document.getElementById(customL).addEventListener("click", function(){
 		var value = this.value;
 		custom = value;
 		queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
+		swoosh.pause();
+		swoosh.currentTime=0;
 		swoosh.play();
 		getgifs();
 		});
@@ -163,12 +218,15 @@ $.ajax({
 		reset();
 		gifbackground = true;
 		$('#songplayer2').get(0).play();
-		$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');
+		$('body').css('background-image', 'url(images/marisaspin.gif)').css('background-color', 'pink');
 		swoosh.pause();
+		fail.pause();
+		fail.currentTime=0;
 		fail.play();
 		$('#gifs').empty();
-		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">NO RESULTS...</div><div class="col-xs-3"></div></div>');
-		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="col-xs-6">TRY SOMETHING ELSE!</div><div class="col-xs-3"></div></div>');		
+		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">NO RESULTS...</div><div class="col-xs-3"></div></div>');
+		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">TRY SOMETHING ELSE!</div><div class="col-xs-3"></div></div>');		
+		$('.animatethis').addClass("animated rubberBand infinite");
 	}
 	else {
 		for (var i = 0; i<response.data.length; i+=4){
@@ -183,7 +241,7 @@ $.ajax({
 			rowNum +=1;
 	    }
 	    for (var i = 0; i < response.data.length; i++) {
-	    	$('#gif'+i+'').append('<div class="col-xs-3 gifContainer"><a href="'+response.data[i].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i].images.downsized.url+'"></a></div>');
+	    	$('#gif'+i+'').append('<div class="animatethis col-xs-3 gifContainer"><a href="'+response.data[i].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i].images.downsized.url+'"></a></div>');
 	    		document.getElementById('gif'+i+'').addEventListener("mouseover", function(){
 	    				var changeImg = $(this).children().eq(0).children().eq(0).children().eq(0);
 	    				var j = changeImg.attr('numvalue');
@@ -199,9 +257,21 @@ $.ajax({
 	    				changeImg.attr("src",""+object.data[j].images.downsized.url+"").css('opacity', '1');
 					});	    		
 	    }
-	    if(gifbackground){
-	    	$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
-	    }
+		    if(gifbackground){
+		    	$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
+		    	$('.animatethis').addClass("animated rubberBand infinite");
+		    }
+		    else if(georgebackground){
+				console.log('yes');			
+				$('.animatethis').addClass("animated flip infinite");
+			}
+			if(geddanbackground){
+				$('.animatethis').addClass("animated hinge");
+				glassbreak2.pause();
+				glassbreak2.currentTime=0;
+				glassbreak2.play();
+			}
+	    
 	    else{
 	    	return;
 	    }
@@ -214,41 +284,61 @@ getgifs();
 typing.play();
 
 $('.buttontyping').click(function(){
+	typing.pause();
+	typing.currentTime=0;
 	typing.play();
 });
 
 $('.buttontypingslow').click(function(){
+	typingslow.pause();
+	typingslow.currentTime=0;
 	typingslow.play();
 });
 
 $('.buttontypewriter').click(function(){
+	typewriter.pause();
+	typewriter.currentTime=0;
 	typewriter.play();
 });
 
 $('.buttonthanksobama').click(function(){
+	thanksobama.pause();
+	thanksobama.currentTime=0;
 	thanksobama.play();
 });
 
 $('.buttonrubberduck').click(function(){
+	rubberduck.pause();
+	rubberduck.currentTime=0;
 	rubberduck.play();
 })
 
 $('.buttonmeow').click(function(){
+	meow.pause();
+	meow.currentTime=0;
 	meow.play();
 })
 
 $('.buttonjake').click(function(){
+	jake.pause();
+	jake.currentTime=0;
 	jake.play();
 })
 
 $('.buttonmathematical').click(function(){
+	mathematical.pause();
+	mathematical.currentTime=0;
 	mathematical.play();
 })
 
 $('.buttonswoosh').click(function(){
+	swoosh.pause();
+	swoosh.currentTime=0;
 	swoosh.play();
 })
 
 $('.buttontoasty').click(function(){
+	toasty.pause();
+	toasty.currentTime=0;
 	toasty.play();
 })
