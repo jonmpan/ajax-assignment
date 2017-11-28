@@ -1,4 +1,5 @@
 // urloldkey = 'https://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC'
+//Add Random Gif Background
 var custom = 'cats typing'
 var imagecount = 12;
 var queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
@@ -19,6 +20,8 @@ var explosion = new Audio('media/explosion.mp3');
 var glassbreak = new Audio('media/glassbreak.mp3');
 var glassbreak2 = new Audio('media/glassbreak.mp3');
 var ding = new Audio('media/ding.mp3');
+var boing = new Audio('media/boing.mp3');
+var toasty = new Audio('media/toasty.mp3');
 var gifbackground = false;
 var geddanbackground = false;
 var georgebackground = false;
@@ -54,6 +57,10 @@ var SEStop = function(){
 	glassbreak2.currentTime = 0;
 	ding.pause();
 	ding.currentTime = 0;
+	boing.pause();
+	boing.currentTime = 0;
+	toasty.pause();
+	toasty.currentTime = 0;
 }
 
 var reset = function(){
@@ -109,17 +116,16 @@ $('#resetbackground').click(function(){
 $('.logoclick').click(function(){
 		reset();
 		gifbackground = true;
+		boing.play();
 		$('#songplayer2').get(0).play();
-		if(object.data[0]){
-			console.log('yes');
-			$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
+		if(object.data.length>0){
 			$('.animatethis').addClass("animated rubberBand infinite");
 			getgifs();
-			// getgifs();
 		}
 		else{
 			reset();
 			gifbackground=true;
+			boing.play();
 			$('#songplayer2').get(0).play();
 			$('body').css('background-image', 'url(images/marisaspin.gif)').css('background-color', 'pink');
 			$('#gifs').empty();
@@ -132,6 +138,7 @@ $('.logoclick').click(function(){
 $('#george').click(function(){
 	reset();
 	georgebackground = true;
+	toasty.play();
 	$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');
 	$('#songplayer').get(0).play();
 	$('#gifs').empty();
@@ -262,7 +269,10 @@ $.ajax({
 					});	    		
 	    }
 		    if(gifbackground){
-		    	$('body').css('background-image', 'url('+object.data[0].images.downsized.url+')');
+		    	var r = Math.floor(Math.random()*object.data.length);
+				console.log(r);
+				console.log(object.data[r].images.downsized.url);
+				$('body').css('background-image', 'url('+object.data[r].images.downsized.url+')');
 		    	$('.animatethis').addClass("animated rubberBand infinite");
 		    }
 		    else if(georgebackground){
