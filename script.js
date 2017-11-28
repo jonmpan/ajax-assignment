@@ -13,7 +13,7 @@ var meow = new Audio('media/meow.mp3');
 var jake = new Audio('media/jake.mp3');
 var mathematical = new Audio('media/mathematical.mp3');
 var swoosh = new Audio('media/swoosh.mp3');
-var toasty = new Audio('media/toasty.mp3');
+var dragonroar = new Audio('media/dragonroar.mp3');
 var fail = new Audio('media/fail.mp3');
 var explosion = new Audio('media/explosion.mp3');
 var glassbreak = new Audio('media/glassbreak.mp3');
@@ -42,8 +42,8 @@ var SEStop = function(){
 	mathematical.currentTime = 0;
 	swoosh.pause();
 	swoosh.currentTime = 0;
-	toasty.pause();
-	toasty.currentTime = 0;
+	dragonroar.pause();
+	dragonroar.currentTime = 0;
 	fail.pause();
 	fail.currentTime = 0;
 	explosion.pause();
@@ -331,7 +331,7 @@ $('.buttonswoosh').click(function(){
 	swoosh.play();
 })
 
-$('.buttontoasty').click(function(){
+$('.buttondragonroar').click(function(){
 	SEStop();
-	toasty.play();
+	dragonroar.play();
 })
