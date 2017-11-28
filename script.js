@@ -265,14 +265,38 @@ $.ajax({
 			}
 			if(geddanbackground){
 				$('.animatethis').addClass("animated hinge");
+				typing.pause();
+				typing.currentTime = 0;
+				typingslow.pause();
+				typingslow.currentTime = 0;
+				typewriter.pause();
+				typewriter.currentTime = 0;
+				thanksobama.pause();
+				thanksobama.currentTime = 0;
+				rubberduck.pause();
+				rubberduck.currentTime = 0;
+				meow.pause();
+				meow.currentTime = 0;
+				jake.pause();
+				jake.currentTime = 0;
+				mathematical.pause();
+				mathematical.currentTime = 0;
+				swoosh.pause();
+				swoosh.currentTime = 0;
+				toasty.pause();
+				toasty.currentTime = 0;
+				fail.pause();
+				fail.currentTime = 0;
+				explosion.pause();
+				explosion.currentTime = 0;
 				glassbreak2.pause();
 				glassbreak2.currentTime=0;
 				glassbreak2.play();
+				$('#gifs').prepend('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
 			}
-	    
-	    else{
-	    	return;
-	    }
+		    else{
+		    	return;
+		    }
 	}
     });
 }
