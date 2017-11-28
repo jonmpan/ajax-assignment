@@ -24,12 +24,16 @@ var geddanbackground = false;
 var georgebackground = false;
 
 var reset = function(){
+	if(geddanbackground){
+		$('#gifs').empty();
+	}
 	gifbackground = false;
 	geddanbackground = false;
 	georgebackground = false;
 	$('#songplayer').get(0).pause();
 	$('#songplayer2').get(0).pause();
 	document.getElementById('geddanvideo').pause();
+	document.getElementById('geddanvideo').currentTime=0;
 	$('#geddanvideo').hide();
 	$('body').css('background-image', '');
 	$('body').css('background', '');
