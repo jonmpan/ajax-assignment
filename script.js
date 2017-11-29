@@ -29,7 +29,7 @@ var geddanbackground = false;
 var georgebackground = false;
 
 //Stops sound effects function
-var SEStop = function(){
+var stopsound = function(){
 	typing.pause();
 	typing.currentTime = 0;
 	typingslow.pause();
@@ -84,7 +84,7 @@ var reset = function(){
 	$('body').css('background-image', '');
 	$('body').css('background', '');
 	$('.animatethis').removeClass("animated rubberBand flip hinge infinite");
-	SEStop();
+	stopsound();
 }
 
 //Deletes user created buttons
@@ -95,7 +95,7 @@ $('#resetbuttons').click(function(){
 	console.log('#ofButtons '+x+'');
 
 	if(x>12){
-		SEStop();
+		stopsound();
 		explosion.play();
 		for (var i = 0; i < y-12; i++) {
 			var child = $('#buttons').children().eq(12);
@@ -188,12 +188,6 @@ $('#oneMinus').click(function() {
 	}
 });
 
-$('.buttonclick').click(function(){
-	var value = this.value;
-	custom = value;
-	queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
-	getgifs();
-});
 //End Counter Section
 
 //Form Section
@@ -215,29 +209,21 @@ $('#formButton').click(function(){
 	getgifs();
 	//Checks to see if the user's input exists as a button already
 	if(document.getElementById(customL)){
-		SEStop();
+		stopsound();
 		swoosh.play();
 	}
 	//If the button does not exist, create a button
 	else{
-		SEStop();
+		stopsound();
 		swoosh.play();
 		$('#buttons').append('<button id="'+customL+'" value="'+customL+'" class="animatethis buttonswoosh buttonclick btn btn-6 btn-6b">'+custom+'</button>');
-		//Adds event listener to the new button to function like the existing buttons
-		document.getElementById(customL).addEventListener("click", function(){
-			var value = this.value;
-			custom = value;
-			queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
-			SEStop();
-			swoosh.play();
-			getgifs();
-		});
 	};
 });
 
 //Code for AJAX request and appending images
 function getgifs(){
 $('#gifs').empty();
+var queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 $.ajax({
 	    url: queryURL,
 	    method: "GET"
@@ -252,7 +238,7 @@ $.ajax({
 			$('#songplayer2').get(0).play();
 			$('body').css('background-image', 'url(images/marisaspin.gif)').css('background-color', 'pink');
 			swoosh.pause();
-			SEStop();
+			stopsound();
 			fail.play();
 			$('#gifs').empty();
 			$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">NO RESULTS...</div><div class="col-xs-3"></div></div>');
@@ -276,23 +262,9 @@ $.ajax({
 		    	$('#col3').append('<div class="container-fluid"><div class="row" id="gif'+i3+'"></div></div>');
 		    }
 
-		    //Appends gifs to proper #gif div. Adds event listeners for mouseover and mouseout
+		    //Appends gifs to proper #gif div
 		    for (var i = 0; i < response.data.length; i++) {
-		    	$('#gif'+i+'').append('<div class="animatethis gifContainer"><a href="'+response.data[i].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i].images.downsized.url+'"></a></div>');
-		    		document.getElementById('gif'+i+'').addEventListener("mouseover", function(){
-		    				var changeImg = $(this).children().eq(0).children().eq(0).children().eq(0);
-		    				var j = changeImg.attr('numvalue');
-		    				console.log('hovered');
-		    				console.log(j);
-		    				changeImg.attr("src",""+object.data[j].images.downsized_still.url+"").css('opacity', '0.85');
-						});
-					document.getElementById('gif'+i+'').addEventListener("mouseout", function(){
-		    				var changeImg = $(this).children().eq(0).children().eq(0).children().eq(0);
-		    				var j = changeImg.attr('numvalue');
-		    				console.log('out');
-		    				console.log(j);
-		    				changeImg.attr("src",""+object.data[j].images.downsized.url+"").css('opacity', '1');
-						});
+		    	$('#gif'+i+'').append('<div class="animatethis gifContainer fadeinout"><a href="'+response.data[i].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i].images.downsized.url+'"></a></div>');
 		    }
 		    	//Adds animation/background based on which background is active
 			    if(gifbackground){
@@ -308,7 +280,7 @@ $.ajax({
 				}
 				else if(geddanbackground){
 					$('.animatethis').addClass("animated hinge");
-					SEStop();
+					stopsound();
 					glassbreak2.play();
 					$('#gifs').prepend('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
 				}
@@ -327,51 +299,80 @@ typing.play();
 
 //Sound effects for clicking on buttons
 $('.buttontyping').click(function(){
-	SEStop();
+	stopsound();
 	typing.play();
 });
 
 $('.buttontypingslow').click(function(){
-	SEStop();
+	stopsound();
 	typingslow.play();
 });
 
 $('.buttontypewriter').click(function(){
-	SEStop();
+	stopsound();
 	typewriter.play();
 });
 
 $('.buttonthanksobama').click(function(){
-	SEStop();
+	stopsound();
 	thanksobama.play();
 });
 
 $('.buttonrubberduck').click(function(){
-	SEStop();
+	stopsound();
 	rubberduck.play();
 })
 
 $('.buttonmeow').click(function(){
-	SEStop();
+	stopsound();
 	meow.play();
 })
 
 $('.buttonjake').click(function(){
-	SEStop();
+	stopsound();
 	jake.play();
 })
 
 $('.buttonmathematical').click(function(){
-	SEStop();
+	stopsound();
 	mathematical.play();
 })
 
-$('.buttonswoosh').click(function(){
-	SEStop();
-	swoosh.play();
-})
-
 $('.buttondragonroar').click(function(){
-	SEStop();
+	stopsound();
 	dragonroar.play();
 })
+
+
+//functions and event listeners for the whole document
+var playswoosh = function(){
+	stopsound();
+	swoosh.play();
+}
+
+var buttonclickajax = function(){
+	var value = this.value;
+	custom = value;
+	getgifs();
+}
+
+var fadeout = function(){
+	var changeImg = $(this).children().eq(0).children().eq(0);
+	var j = changeImg.attr('numvalue');
+	console.log('hovered');
+	changeImg.attr("src",""+object.data[j].images.downsized_still.url+"").css('opacity', '0.85');
+}
+
+var fadein = function(){
+	var changeImg = $(this).children().eq(0).children().eq(0);
+	var j = changeImg.attr('numvalue');
+	console.log('out');
+	console.log(j);
+	changeImg.attr("src",""+object.data[j].images.downsized.url+"").css('opacity', '1');
+}
+
+$(document).on("click", ".buttonswoosh", playswoosh);
+$(document).on("click", ".buttonclick", buttonclickajax);
+$(document).on("mouseover", ".fadeinout", fadeout);
+$(document).on("mouseout", ".fadeinout", fadein);
+//end event listeners for the whole document
