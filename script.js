@@ -95,13 +95,13 @@ $('#resetbuttons').click(function(){
 	console.log('#ofButtons '+x+'');
 
 	if(x>12){
+		SEStop();
+		explosion.play();
 		for (var i = 0; i < y-12; i++) {
 			var child = $('#buttons').children().eq(12);
 			child.detach();
 			var x = document.getElementById("buttons").childElementCount;
 			console.log('Removed a button');
-			SEStop();
-			explosion.play();
 		}
 	}
 	else{
