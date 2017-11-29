@@ -1,6 +1,6 @@
 //Variables for URL generation
 var custom = 'cats typing'
-var imagecount = 12;
+var imagecount = 16;
 var queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+''
 //Used to store the returned object from Giphy
 var object;
@@ -70,7 +70,7 @@ var SEStop = function(){
 var reset = function(){
 	//Empties the text box just for Geddan
 	if(geddanbackground){
-		$('#gifs').empty();
+		// $('#gifs').empty();
 	}
 	//End Empty Geddan
 	gifbackground = false;
@@ -125,17 +125,15 @@ $('#resetbackground').click(function(){
 $('.logoclick').click(function(){
 		reset();
 		gifbackground = true;
-		boing.play();
 		$('#songplayer2').get(0).play();
 		//Checks to see if the AJAX request has any images in it
 		if(object.data.length>0){
+			boing.play();
 			$('.animatethis').addClass("animated rubberBand infinite");
 			getgifs();
 		}
 		//Sends you to the NO RESULTS section
 		else{
-			reset();
-			gifbackground=true;
 			boing.play();
 			$('#songplayer2').get(0).play();
 			$('body').css('background-image', 'url(images/marisaspin.gif)').css('background-color', 'pink');
@@ -247,74 +245,80 @@ $.ajax({
 	    console.log(response);
 	    rowNum = 1;
 	    object = response;
-	//If AJAX returns no results, creates No Results scenario
-	if(response.data.length<1){
-		reset();
-		gifbackground = true;
-		$('#songplayer2').get(0).play();
-		$('body').css('background-image', 'url(images/marisaspin.gif)').css('background-color', 'pink');
-		swoosh.pause();
-		SEStop();
-		fail.play();
-		$('#gifs').empty();
-		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">NO RESULTS...</div><div class="col-xs-3"></div></div>');
-		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">TRY SOMETHING ELSE!</div><div class="col-xs-3"></div></div>');		
-		$('.animatethis').addClass("animated rubberBand infinite");
-	}
-	//If AJAX returns results, create Rows and Gifs
-	else {
-		for (var i = 0; i<response.data.length; i+=4){
-			var i1=i+1;
-			var i2=i+2;
-			var i3=i+3;
-			$('#gifs').append('<div id="gifrow'+rowNum+'" class="row justify-content-md-center"></div>');
-			$('#gifrow'+rowNum+'').append('<div id="gif'+i+'"></div>');
-			$('#gifrow'+rowNum+'').append('<div id="gif'+i1+'"></div>');
-			$('#gifrow'+rowNum+'').append('<div id="gif'+i2+'"></div>');
-			$('#gifrow'+rowNum+'').append('<div id="gif'+i3+'"></div>');
-			rowNum +=1;
-	    }
-	    //Appends the image and the URL to each image. Adds event listeners for mouse in and mouse out to pause and play in the gifs respectively
-	    for (var i = 0; i < response.data.length; i++) {
-	    	$('#gif'+i+'').append('<div class="animatethis col-xs-3 gifContainer"><a href="'+response.data[i].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i].images.downsized.url+'"></a></div>');
-	    		document.getElementById('gif'+i+'').addEventListener("mouseover", function(){
-	    				var changeImg = $(this).children().eq(0).children().eq(0).children().eq(0);
-	    				var j = changeImg.attr('numvalue');
-	    				console.log('hovered');
-	    				console.log(j);
-	    				changeImg.attr("src",""+object.data[j].images.downsized_still.url+"").css('opacity', '0.85');
-					});
-				document.getElementById('gif'+i+'').addEventListener("mouseout", function(){
-	    				var changeImg = $(this).children().eq(0).children().eq(0).children().eq(0);
-	    				var j = changeImg.attr('numvalue');
-	    				console.log('out');
-	    				console.log(j);
-	    				changeImg.attr("src",""+object.data[j].images.downsized.url+"").css('opacity', '1');
-					});
-	    }
-	    	//Adds animation/background based on which background is active
-		    if(gifbackground){
-		    	var r = Math.floor(Math.random()*object.data.length);
-				console.log(r);
-				console.log(object.data[r].images.downsized.url);
-				$('body').css('background-image', 'url('+object.data[r].images.downsized.url+')');
-		    	$('.animatethis').addClass("animated rubberBand infinite");
+		//If no results, show no result screen
+		if(response.data.length<1){
+			reset();
+			gifbackground = true;
+			$('#songplayer2').get(0).play();
+			$('body').css('background-image', 'url(images/marisaspin.gif)').css('background-color', 'pink');
+			swoosh.pause();
+			SEStop();
+			fail.play();
+			$('#gifs').empty();
+			$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">NO RESULTS...</div><div class="col-xs-3"></div></div>');
+			$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">TRY SOMETHING ELSE!</div><div class="col-xs-3"></div></div>');		
+			$('.animatethis').addClass("animated rubberBand infinite");
+		}
+		//Append gifs to page
+		else {
+			//Creates 4 columns to store rows
+		    for(var i = 0; i<4; i++){
+		    	$('#gifs').append('<div class="col-xs-3" id="col'+i+'"></div>');
 		    }
-		    else if(georgebackground){
-				console.log('yes');			
-				$('.animatethis').addClass("animated flip infinite");
-			}
-			else if(geddanbackground){
-				$('.animatethis').addClass("animated hinge");
-				SEStop();
-				glassbreak2.play();
-				$('#gifs').prepend('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
-			}
-		    else{
-		    	return;
+		    //Creates #gif div to append gifs to
+		    for (var i = 0; i<response.data.length; i+=4){
+		    	var i1=i+1;
+		    	var i2=i+2;
+		    	var i3=i+3;
+		    	$('#col0').append('<div class="container-fluid"><div class="row" id="gif'+i+'"></div></div>');
+		    	$('#col1').append('<div class="container-fluid"><div class="row" id="gif'+i1+'"></div></div>');
+		    	$('#col2').append('<div class="container-fluid"><div class="row" id="gif'+i2+'"></div></div>');
+		    	$('#col3').append('<div class="container-fluid"><div class="row" id="gif'+i3+'"></div></div>');
 		    }
-	}
-    });
+
+		    //Appends gifs to proper #gif div. Adds event listeners for mouseover and mouseout
+		    for (var i = 0; i < response.data.length; i++) {
+		    	$('#gif'+i+'').append('<div class="animatethis gifContainer"><a href="'+response.data[i].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i].images.downsized.url+'"></a></div>');
+		    		document.getElementById('gif'+i+'').addEventListener("mouseover", function(){
+		    				var changeImg = $(this).children().eq(0).children().eq(0).children().eq(0);
+		    				var j = changeImg.attr('numvalue');
+		    				console.log('hovered');
+		    				console.log(j);
+		    				changeImg.attr("src",""+object.data[j].images.downsized_still.url+"").css('opacity', '0.85');
+						});
+					document.getElementById('gif'+i+'').addEventListener("mouseout", function(){
+		    				var changeImg = $(this).children().eq(0).children().eq(0).children().eq(0);
+		    				var j = changeImg.attr('numvalue');
+		    				console.log('out');
+		    				console.log(j);
+		    				changeImg.attr("src",""+object.data[j].images.downsized.url+"").css('opacity', '1');
+						});
+		    }
+		    	//Adds animation/background based on which background is active
+			    if(gifbackground){
+			    	var r = Math.floor(Math.random()*object.data.length);
+					console.log(r);
+					console.log(object.data[r].images.downsized.url);
+					$('body').css('background-image', 'url('+object.data[r].images.downsized.url+')');
+			    	$('.animatethis').addClass("animated rubberBand infinite");
+			    }
+			    else if(georgebackground){
+					console.log('yes');			
+					$('.animatethis').addClass("animated flip infinite");
+				}
+				else if(geddanbackground){
+					$('.animatethis').addClass("animated hinge");
+					SEStop();
+					glassbreak2.play();
+					$('#gifs').prepend('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
+				}
+			    else{
+			    	return;
+			    }
+		}
+		//End Append gifs to page
+	});
+
 }
 
 //Starts the document with the preset queryURL gifs
