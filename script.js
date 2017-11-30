@@ -121,7 +121,7 @@ $('#resetbuttons').click(function(){
 
 //Resets the background only if the background has been changed from default
 $('#resetbackground').click(function(){
-	if(gifbackground || georgebackground || geddanbackground){
+	if(gifbackground || georgebackground || geddanbackground || document.getElementById('gifs').hasChildNodes()){
 		reset();
 		ding.play();
 		$('#gifs').empty();
@@ -355,42 +355,124 @@ $.ajax({
 		}
 		//Append gifs to page
 		else {
-			//Creates 4 columns to store rows
 		    //Creates #gif div to append gifs to
-		    for (var i = offset; i<offset+response.data.length; i+=4){
-		    	var i1=i+1;
-		    	var i2=i+2;
-		    	var i3=i+3;
-		    	$('#col0').append('<div class="container-fluid"><div class="row" id="gif'+i+'"></div></div>');
-		    	$('#col1').append('<div class="container-fluid"><div class="row" id="gif'+i1+'"></div></div>');
-		    	$('#col2').append('<div class="container-fluid"><div class="row" id="gif'+i2+'"></div></div>');
-		    	$('#col3').append('<div class="container-fluid"><div class="row" id="gif'+i3+'"></div></div>');
-		    }
+		    var col0H = document.getElementById('col0').clientHeight;
+		    var col1H = document.getElementById('col1').clientHeight;
+		    var col2H = document.getElementById('col2').clientHeight;
+		    var col3H = document.getElementById('col3').clientHeight;
 
+		    if(col0H <= col1H && col0H <= col2H && col0H <= col3H){
+		    	console.log('col0 shortest');
+			    for (var i = offset; i<offset+response.data.length-4; i+=4){
+			    	var i1=i+1;
+			    	var i2=i+2;
+			    	var i3=i+3;
+			    	$('#col0').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i+'"></div></div>');
+			    	$('#col1').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i1+'"></div></div>');
+			    	$('#col2').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i2+'"></div></div>');
+			    	$('#col3').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i3+'"></div></div>');
+		    	}
+			    for (var i = offset+response.data.length-4; i<offset+response.data.length; i+=4){
+			    	var i1=i+1;
+			    	var i2=i+2;
+			    	var i3=i+3;
+			    	$('#col0').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i+'"></div></div>');
+			    	$('#col0').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i1+'"></div></div>');
+			    	$('#col0').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i2+'"></div></div>');
+			    	$('#col1').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i3+'"></div></div>');
+		    	}		    	
+
+		    }
+		    else if(col1H <= col0H && col1H <= col2H && col1H <= col3H){
+		    	console.log('col1 shortest');
+			    for (var i = offset; i<offset+response.data.length-4; i+=4){
+			    	var i1=i+1;
+			    	var i2=i+2;
+			    	var i3=i+3;
+			    	$('#col0').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i+'"></div></div>');
+			    	$('#col1').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i1+'"></div></div>');
+			    	$('#col2').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i2+'"></div></div>');
+			    	$('#col3').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i3+'"></div></div>');
+		    	}
+			    for (var i = offset+response.data.length-4; i<offset+response.data.length; i+=4){
+			    	var i1=i+1;
+			    	var i2=i+2;
+			    	var i3=i+3;
+			    	$('#col1').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i+'"></div></div>');
+			    	$('#col1').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i1+'"></div></div>');
+			    	$('#col1').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i2+'"></div></div>');
+			    	$('#col2').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i3+'"></div></div>');
+		    	}		    	
+
+		    }
+		    else if(col2H <= col0H && col2H <= col1H && col2H <= col3H){
+		    	console.log('col2 shortest');
+			    for (var i = offset; i<offset+response.data.length-4; i+=4){
+			    	var i1=i+1;
+			    	var i2=i+2;
+			    	var i3=i+3;
+			    	$('#col0').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i+'"></div></div>');
+			    	$('#col1').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i1+'"></div></div>');
+			    	$('#col2').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i2+'"></div></div>');
+			    	$('#col3').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i3+'"></div></div>');
+		    	}
+			    for (var i = offset+response.data.length-4; i<offset+response.data.length; i+=4){
+			    	var i1=i+1;
+			    	var i2=i+2;
+			    	var i3=i+3;
+			    	$('#col2').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i+'"></div></div>');
+			    	$('#col2').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i1+'"></div></div>');
+			    	$('#col2').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i2+'"></div></div>');
+			    	$('#col3').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i3+'"></div></div>');
+		    	}		    	
+
+		    }
+		    else if(col3H <= col0H && col3H <= col1H && col3H <= col2H){
+		    	console.log('col3 shortest');
+			    for (var i = offset; i<offset+response.data.length-4; i+=4){
+			    	var i1=i+1;
+			    	var i2=i+2;
+			    	var i3=i+3;
+			    	$('#col0').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i+'"></div></div>');
+			    	$('#col1').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i1+'"></div></div>');
+			    	$('#col2').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i2+'"></div></div>');
+			    	$('#col3').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i3+'"></div></div>');
+		    	}
+			    for (var i = offset+response.data.length-4; i<offset+response.data.length; i+=4){
+			    	var i1=i+1;
+			    	var i2=i+2;
+			    	var i3=i+3;
+			    	$('#col3').append('<div class="container-fluid"><div class="row ajaxhide id="gif'+i+'"></div></div>');
+			    	$('#col3').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i1+'"></div></div>');
+			    	$('#col3').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i2+'"></div></div>');
+			    	$('#col4').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i3+'"></div></div>');
+		    	}
+
+		    }			       
 		    //Appends gifs to proper #gif div
 		    for (var i = offset; i<offset+response.data.length; i++) {
 		    	var numtemp = i-1;
 		    	$('#gif'+i+'').append('<div class="animatethis gifContainer fadeinout"><a href="'+response.data[i-offset].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i-offset].images.downsized.url+'" data-original="'+response.data[i-offset].images.downsized.url+'" data-still="'+response.data[i-offset].images.downsized_still.url+'"></a></div>');
 		    	$('#gif'+i+'').addClass('animated bounceIn');
 		    }
-		    	//Adds animation/background based on which background is active
-			    if(gifbackground){
-			    	var r = Math.floor(Math.random()*object.data.length);
-					$('.animatethis').addClass("animated rubberBand infinite");
-			    }
-			    else if(georgebackground){
-					console.log('george');			
-					$('.animatethis').addClass("animated flip infinite");
-				}
-				else if(geddanbackground){
-					$('.animatethis').addClass("animated hinge");
-					stopsound();
-					glassbreak2.play();
-					$('#gifs').prepend('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
-				}
-			    else{
-			    	return;
-			    }
+	    	//Adds animation/background based on which background is active
+		    if(gifbackground){
+		    	var r = Math.floor(Math.random()*object.data.length);
+				$('.animatethis').addClass("animated rubberBand infinite");
+		    }
+		    else if(georgebackground){
+				console.log('george');			
+				$('.animatethis').addClass("animated flip infinite");
+			}
+			else if(geddanbackground){
+				$('.animatethis').addClass("animated hinge");
+				stopsound();
+				glassbreak2.play();
+				$('#gifs').prepend('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
+			}
+		    else{
+		    	return;
+		    }
 		}
 		//End Append gifs to page
 	});
@@ -495,12 +577,12 @@ var paginatetoggle = function(){
 
 $(window).scroll(function () {
 	if(!geddanbackground){
-		if ($(window).scrollTop() >= $(document).height() - $(window).height() - 500) {
+		if ($(window).scrollTop() >= $(document).height() - $(window).height() - 1500) {
 			if(paginate){
 				paginate=false;
 				console.log('pagination');
 				getgifspagination();
-				setTimeout(paginatetoggle, 200);
+				setTimeout(paginatetoggle, 1000);
 			}
 			else{
 				console.log('only one pagination plze');

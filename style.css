@@ -179,9 +179,12 @@ input {
 img {
 	width: 100%;
 	height: auto;
-	margin-bottom: 10px;
+	margin-bottom: 0px;
 }
 
+.gifContainer{
+	margin-bottom: 10px;
+}
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -247,5 +250,5 @@ button:focus {
 	top: 20vh;
 	left: 10vw;
 	width: 80vw;
-}
+	}
 }
