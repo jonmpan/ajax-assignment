@@ -340,6 +340,7 @@ $.ajax({
 
 }
 
+//infinite scrolling
 function getgifspagination(){
 offset += imagecount;
 var queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+'&offset='+offset+''
@@ -355,7 +356,7 @@ $.ajax({
 		}
 		//Append gifs to page
 		else {
-		    //Creates #gif div to append gifs to
+		    //Appends #gif div into the shortest vertical column
 		    var col0H = document.getElementById('col0').clientHeight;
 		    var col1H = document.getElementById('col1').clientHeight;
 		    var col2H = document.getElementById('col2').clientHeight;
@@ -447,8 +448,7 @@ $.ajax({
 			    	$('#col3').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i2+'"></div></div>');
 			    	$('#col4').append('<div class="container-fluid"><div class="row ajaxhide" id="gif'+i3+'"></div></div>');
 		    	}
-
-		    }			       
+		    }
 		    //Appends gifs to proper #gif div
 		    for (var i = offset; i<offset+response.data.length; i++) {
 		    	var numtemp = i-1;
@@ -476,8 +476,8 @@ $.ajax({
 		}
 		//End Append gifs to page
 	});
-
 }
+//end infinite scrolling
 
 //Starts the document with the preset queryURL gifs
 getgifs();
@@ -569,8 +569,9 @@ $(document).on("mouseover", ".fadeinout", fadeout);
 $(document).on("mouseout", ".fadeinout", fadein);
 //end event listeners for the whole document
 
+//infinitely scroll flag based on scroll location
+//boolean for stopping the page from doing multiple paginations at once
 var paginate = true;
-
 var paginatetoggle = function(){
 	paginate=true;
 }
@@ -594,3 +595,4 @@ $(window).scroll(function () {
 		return;
 	}
 });
+//end infinite scroll flag
