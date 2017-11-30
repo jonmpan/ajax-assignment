@@ -83,7 +83,9 @@ var reset = function(){
 	geddanbackground2 = false;
 	georgebackground = false;
 	$('#songplayer').get(0).pause();
+	$('#songplayer').get(0).currentTime=0;
 	$('#songplayer2').get(0).pause();
+	$('#songplayer2').get(0).currentTime=0;
 	document.getElementById('geddanvideo').pause();
 	document.getElementById('geddanvideo').currentTime=0;
 	$('#geddanvideo').hide();
