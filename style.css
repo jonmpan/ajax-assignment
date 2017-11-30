@@ -1,3 +1,5 @@
+
+
 #uparrow {
 	width: 50px;
 	position: fixed;
@@ -201,11 +203,18 @@ img {
 	display: none;
 }
 
-#noresults {
+#noresults, #geddanstyle {
 	font-size: 48px;
 	font-weight: 700;
 	text-align: center;
 	background: rgba(256,256,256,.5);
+}
+
+#geddanstyle {
+	position: absolute;
+	top: 20vh;
+	left: 20vw;
+	width: 60vw;
 }
 
 button:focus {
@@ -233,4 +242,10 @@ button:focus {
 	.resetbuttonstyle{
 		padding-top: 3px;
 	}
+	#geddanstyle {
+	position: absolute;
+	top: 20vh;
+	left: 10vw;
+	width: 80vw;
+}
 }

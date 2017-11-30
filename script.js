@@ -180,21 +180,36 @@ $('#george').click(function(){
 //Initializes Geddan
 $('#geddan').click(function(){
 	if(!geddanbackground){
-		reset();
+		$('#songplayer').get(0).pause();
+		$('#songplayer2').get(0).pause();
+		$('body').css('background-image', '');
+		$('body').css('background', '');
+		stopsound();
 		glassbreak.play();
 		geddanbackground=true;
 		$('body').css('background-image', '').css('background-color', '#FF9C00');
 		$('#videocontainer').show();
 		document.getElementById('geddanvideo').play();
 		$('#geddanvideo').show();
-		$('#gifs').empty();
-		$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
+		$('.animatethis').removeClass("rubberBand flip infinite");
 		$('.animatethis').addClass("animated hinge");
+		$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="geddanstyle" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
+		setTimeout(geddanempty, 2000);
 	}
 	else{
 		return;
 	}
 });
+
+var geddanempty = function() {
+	if(geddanbackground){
+		$('#gifs').empty();
+		$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="geddanstyle" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
+	}
+	else{
+		return;
+	}
+}
 
 //Counter Section
 $('#onePlus').click(function() {
@@ -364,7 +379,7 @@ $.ajax({
 					$('.animatethis').addClass("animated rubberBand infinite");
 			    }
 			    else if(georgebackground){
-					console.log('yes');			
+					console.log('george');			
 					$('.animatethis').addClass("animated flip infinite");
 				}
 				else if(geddanbackground){
