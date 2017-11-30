@@ -309,7 +309,7 @@ $.ajax({
 
 		    //Appends gifs to proper #gif div
 		    for (var i = 0; i < response.data.length; i++) {
-		    	$('#gif'+i+'').append('<div class="animatethis gifContainer fadeinout"><a href="'+response.data[i].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i].images.downsized.url+'" data-original="'+response.data[i].images.downsized.url+'" data-still="'+response.data[i].images.downsized_still.url+'"></a></div>');
+		    	$('#gif'+i+'').append('<div class="animatethis gifContainer fadeinout"><a href="'+response.data[i].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i].images.downsized.url+'" data-original="'+response.data[i].images.downsized.url+'" data-still="'+response.data[i].images.downsized_still.url+'"><p>'+response.data[i].title+'</p></a></div>');
 		    	$('#gif'+i+'').addClass('animated bounceIn');
 		    }
 		    	//Adds animation/background based on which background is active
@@ -452,7 +452,7 @@ $.ajax({
 		    //Appends gifs to proper #gif div
 		    for (var i = offset; i<offset+response.data.length; i++) {
 		    	var numtemp = i-1;
-		    	$('#gif'+i+'').append('<div class="animatethis gifContainer fadeinout"><a href="'+response.data[i-offset].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i-offset].images.downsized.url+'" data-original="'+response.data[i-offset].images.downsized.url+'" data-still="'+response.data[i-offset].images.downsized_still.url+'"></a></div>');
+		    	$('#gif'+i+'').append('<div class="animatethis gifContainer fadeinout"><a href="'+response.data[i-offset].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i-offset].images.downsized.url+'" data-original="'+response.data[i-offset].images.downsized.url+'" data-still="'+response.data[i-offset].images.downsized_still.url+'"><p>'+response.data[i-offset].title+'</p></a></div>');
 		    	$('#gif'+i+'').addClass('animated bounceIn');
 		    }
 	    	//Adds animation/background based on which background is active
@@ -554,13 +554,14 @@ var buttonclickajax = function(){
 var fadeout = function(){
 	var changeImg = $(this).children().eq(0).children().eq(0);
 	var stillimage = changeImg.attr('data-still');
-	changeImg.attr("src",""+stillimage+"").css('opacity', '0.85');
+	changeImg.attr("src",""+stillimage+"").css('filter', 'brightness(75%)');
 }
 
 var fadein = function(){
+	
 	var changeImg = $(this).children().eq(0).children().eq(0);
 	var originalimage = changeImg.attr('data-original');
-	changeImg.attr("src",""+originalimage+"").css('opacity', '1');
+	changeImg.attr("src",""+originalimage+"").css('filter', 'brightness(100%)');
 }
 
 $(document).on("click", ".buttonswoosh", playswoosh);
