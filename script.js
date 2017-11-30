@@ -309,7 +309,15 @@ $.ajax({
 
 		    //Appends gifs to proper #gif div
 		    for (var i = 0; i < response.data.length; i++) {
-		    	$('#gif'+i+'').append('<div class="animatethis gifContainer fadeinout"><a href="'+response.data[i].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i].images.downsized.url+'" data-original="'+response.data[i].images.downsized.url+'" data-still="'+response.data[i].images.downsized_still.url+'"><p>'+response.data[i].title+'</p></a></div>');
+		    	var mystring = response.data[i].title;
+		    	var newstring = mystring.replace(/\s/g, "").length;
+		    	if(newstring>0){
+		    		var temptitle = response.data[i].title
+		    	}
+		    	else {
+		    		var temptitle = 'No Title'
+		    	}
+		    	$('#gif'+i+'').append('<div class="animatethis gifContainer fadeinout"><a href="'+response.data[i].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i].images.downsized.url+'" data-original="'+response.data[i].images.downsized.url+'" data-still="'+response.data[i].images.downsized_still.url+'"><p>'+temptitle+'</p></a></div>');
 		    	$('#gif'+i+'').addClass('animated bounceIn');
 		    }
 		    	//Adds animation/background based on which background is active
@@ -451,8 +459,15 @@ $.ajax({
 		    }
 		    //Appends gifs to proper #gif div
 		    for (var i = offset; i<offset+response.data.length; i++) {
-		    	var numtemp = i-1;
-		    	$('#gif'+i+'').append('<div class="animatethis gifContainer fadeinout"><a href="'+response.data[i-offset].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i-offset].images.downsized.url+'" data-original="'+response.data[i-offset].images.downsized.url+'" data-still="'+response.data[i-offset].images.downsized_still.url+'"><p>'+response.data[i-offset].title+'</p></a></div>');
+		    	var mystring = response.data[i-offset].title;
+		    	var newstring = mystring.replace(/\s/g, "").length;
+		    	if(newstring>0){
+		    		var temptitle = response.data[i-offset].title
+		    	}
+		    	else {
+		    		var temptitle = 'No Title'
+		    	}
+		    	$('#gif'+i+'').append('<div class="animatethis gifContainer fadeinout"><a href="'+response.data[i-offset].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i-offset].images.downsized.url+'" data-original="'+response.data[i-offset].images.downsized.url+'" data-still="'+response.data[i-offset].images.downsized_still.url+'"><p>'+temptitle+'</p></a></div>');
 		    	$('#gif'+i+'').addClass('animated bounceIn');
 		    }
 	    	//Adds animation/background based on which background is active
