@@ -216,22 +216,24 @@ var geddanempty = function(){
 }
 
 var geddanfix0 = function(){
-	$('#resetbackground').text("Uh Oh, wut hpnd?!");
+	$('#resetbackground').text("Uh Oh!!");
 	$('#resetbackground').removeClass("hinge");
 	$('#resetbackground').addClass("bounceInUpSlow");	
-	setTimeout(geddanfix1, 8000);
+	setTimeout(geddanfix1, 2000);
 }
-
 var geddanfix1 = function(){
-	$('#resetbackground').text("ITS OK! IM COMING!");
-	setTimeout(geddanfix2, 7000);
-		
+	$('#resetbackground').text("Wut Happened?!?");
+	setTimeout(geddanfix2, 6000);	
 }
 var geddanfix2 = function(){
-	$('#resetbackground').text("I'LL SAVE YOU!!!");
-	setTimeout(geddanfix3, 11000);
+	$('#resetbackground').text("ITS OK! IM COMING!");
+	setTimeout(geddanfix3, 7000);	
 }
 var geddanfix3 = function(){
+	$('#resetbackground').text("I'LL SAVE YOU!!!");
+	setTimeout(geddanfix4, 11000);
+}
+var geddanfix4 = function(){
 	$('#resetbackground').text("ALMOST THERE!!");
 	setTimeout(geddanfix, 7000);
 }
