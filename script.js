@@ -579,6 +579,13 @@ var fadein = function(){
 	changeImg.attr("src",""+originalimage+"").css('filter', 'brightness(100%)');
 }
 
+var stoplink = function(event){
+	if(geddanbackground){
+	event.preventDefault();
+	}
+}
+
+$(document).on("click", "a", stoplink);
 $(document).on("click", ".buttonswoosh", playswoosh);
 $(document).on("click", ".buttonclick", buttonclickajax);
 $(document).on("mouseover", ".fadeinout", fadeout);

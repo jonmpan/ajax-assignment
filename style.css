@@ -226,6 +226,7 @@ img {
 	top: 20vh;
 	left: 20vw;
 	width: 60vw;
+	z-index: 900;
 }
 
 button:focus {
