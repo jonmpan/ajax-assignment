@@ -2,13 +2,13 @@
 <html>
 <head>
 	<title>AJAXing Giphy</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="uparrow"><div><img src="images/uparrow.png"></div></div>
+<div id="uparrow" class="noselect animatethis"><div><img src="images/uparrow.png"></div></div>
 
 <div class="container">
 
@@ -21,12 +21,12 @@
   </div>
 </div>
 
-  <div class="row" id="giphyLogo" align="center">
+  <div class="row noselect" id="giphyLogo" align="center">
     <div class="col-xs-1"></div>
     <div class="col-xs-3 resetbuttonstyle">
       <button id="resetbuttons" class="animatethis btn btn-6 btn-6a">Reset Buttons</button>
     </div>
-    <div class="animatethis col-xs-4 logoclick">
+    <div class="animatethis animated rubberBand infinite col-xs-4 logoclick">
       <img src="images/giphylogo.png">
     </div>
     <div class="col-xs-3 resetbuttonstyle">
@@ -35,19 +35,19 @@
     <div class="col-xs-1 col-md-1"></div>
   </div>
 
-  <div id="buttons" align="center" class="">
+  <div id="buttons" align="center" class="noselect">
     <button id="cats typing" value="cats typing" class="animatethis buttonclick buttontyping btn btn-6 btn-6b">cats typing</button>
     <button id="dogs typing" value="dogs typing" class="animatethis buttonclick buttontypingslow btn btn-6 btn-6b">dogs typing</button>
     <button id="typewriter" value="typewriter" class="animatethis buttonclick buttontypewriter btn btn-6 btn-6b">Me Typing</button>
-    <button id="geddan" value="geddan" class="animatethis btn btn-6 btn-6b">geddan</button>
     <button id="cats sliding" value="wolf spider" class="animatethis buttonclick buttondragonroar btn btn-6 btn-6b">Cute &#38 Fuzzy</button>
     <button id="thanks obama" value="thanks obama" class="animatethis buttonclick buttonthanksobama btn btn-6 btn-6b">thanks obama</button>    
+    <button id="george" value="rainbow" class="animatethis buttonclick btn btn-6 btn-6b">george</button>
     <button id="kittens" value="kittens" class="animatethis buttonclick buttonmeow btn btn-6 btn-6b">Kittens</button>
     <button id="hedgehog" value="hedgehog" class="animatethis buttonclick buttonrubberduck btn btn-6 btn-6b">HEDGEHOGS</button>
     <button id="bearded dragon" value="bearded dragon" class="animatethis buttonclick buttondragonroar btn btn-6 btn-6b">Bearded Dragons</button>
     <button id="jake the dog" value="jake the dog" class="animatethis buttonclick buttonjake btn btn-6 btn-6b">jake the dog</button>
     <button id="finn the human" value="finn the human" class="animatethis buttonclick buttonmathematical btn btn-6 btn-6b">finn the human</button>
-    <button id="george" value="george" class="animatethis btn btn-6 btn-6b">george</button>
+    <button id="geddan" value="geddan" class="animatethis btn btn-6 btn-6b">geddan</button>
   </div>
 
   <div id="formContainer" class="row">
@@ -56,7 +56,7 @@
       <div class="col-xs-6 col-sm-4" align="center">
         <form id="form1">
           <input id="userinput" class="animatethis" onClick="this.setSelectionRange(0, this.value.length)" type="text" value="HOTDOG" autocomplete="off">
-          <input class="animatethis btn-submit btn-6 btn-6a btn-icon-only icon-heart" id="formButton" type="button" value="make button">
+          <input class="noselect animatethis btn-submit btn-6 btn-6a btn-icon-only icon-heart" id="formButton" type="button" value="make button">
         </form>
       </div>
 
@@ -70,7 +70,7 @@
       </div> -->
   </div>
 
-  <div class="container"> 
+  <div class="container noselect"> 
     <div class="row" id="gifs">
 <!--  What the divs should look like after script.js appends them     
       <div class="col-xs-3" id="col0">

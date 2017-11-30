@@ -30,6 +30,7 @@ var toasty = new Audio('media/toasty.mp3');
 //Booleans for changing the background of the page
 var gifbackground = false;
 var geddanbackground = false;
+var geddanbackground2 = false;
 var georgebackground = false;
 
 //Stops sound effects function
@@ -79,6 +80,7 @@ var reset = function(){
 	//End Empty Geddan
 	gifbackground = false;
 	geddanbackground = false;
+	geddanbackground2 = false;
 	georgebackground = false;
 	$('#songplayer').get(0).pause();
 	$('#songplayer2').get(0).pause();
@@ -87,7 +89,8 @@ var reset = function(){
 	$('#geddanvideo').hide();
 	$('body').css('background-image', '');
 	$('body').css('background', '');
-	$('.animatethis').removeClass("animated rubberBand flip hinge infinite");
+	$('.animatethis').removeClass("animated rubberBand flip rotate360 hinge infinite");
+	$('#resetbackground').removeClass("animated hinge fadeInDown bounceInUpSlow")
 	stopsound();
 }
 
@@ -121,7 +124,7 @@ $('#resetbuttons').click(function(){
 
 //Resets the background only if the background has been changed from default
 $('#resetbackground').click(function(){
-	if(gifbackground || georgebackground || geddanbackground || document.getElementById('gifs').hasChildNodes()){
+	if(gifbackground || georgebackground || (document.getElementById('gifs').hasChildNodes() && !geddanbackground) || (geddanbackground2 && geddanbackground)){
 		reset();
 		ding.play();
 		$('#gifs').empty();
@@ -140,7 +143,7 @@ $('.logoclick').click(function(){
 		//Checks to see if the AJAX request has any images in it
 		if(object.data.length>0){
 			boing.play();
-			$('.animatethis').addClass("animated rubberBand infinite");
+			// $('.animatethis').addClass("animated pulse infinite");
 			getgifs();
 		}
 		//Sends you to the NO RESULTS section
@@ -165,11 +168,11 @@ $('#george').click(function(){
 		reset();
 		georgebackground = true;
 		toasty.play();
-		$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink');
+		$('body').css('background-image', 'url(images/george.gif)').css('background-color', 'pink').css('background-attachment', 'fixed');
 		$('#songplayer').get(0).play();
-		$('#gifs').empty();
-		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">N0 R3SUL75...</div><div class="col-xs-3"></div></div>');
-		$('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">1337 TA 7H0UGH!</div><div class="col-xs-3"></div></div>');
+		// $('#gifs').empty();
+		// $('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">N0 R3SUL75...</div><div class="col-xs-3"></div></div>');
+		// $('#gifs').append('<div class="row"><div class="col-xs-3"></div><div id="noresults" class="animatethis col-xs-6">1337 TA 7H0UGH!</div><div class="col-xs-3"></div></div>');
 		$('.animatethis').addClass("animated flip infinite");
 	}
 	else{
@@ -180,19 +183,22 @@ $('#george').click(function(){
 //Initializes Geddan
 $('#geddan').click(function(){
 	if(!geddanbackground){
+		reset();
+		geddanbackground=true;
+		geddanbackground2=false;
+		stopsound();
+		glassbreak.play();
 		$('#songplayer').get(0).pause();
 		$('#songplayer2').get(0).pause();
 		$('body').css('background-image', '');
 		$('body').css('background', '');
-		stopsound();
-		glassbreak.play();
-		geddanbackground=true;
 		$('body').css('background-image', '').css('background-color', '#FF9C00');
 		$('#videocontainer').show();
 		document.getElementById('geddanvideo').play();
 		$('#geddanvideo').show();
 		$('.animatethis').removeClass("rubberBand flip infinite");
 		$('.animatethis').addClass("animated hinge");
+		$('#resetbackground').addClass("animated hinge");
 		$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="geddanstyle" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
 		setTimeout(geddanempty, 2000);
 	}
@@ -201,14 +207,29 @@ $('#geddan').click(function(){
 	}
 });
 
-var geddanempty = function() {
-	if(geddanbackground){
-		$('#gifs').empty();
-		$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="geddanstyle" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
-	}
-	else{
-		return;
-	}
+var geddanempty = function(){
+	$('#gifs').empty();
+	$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="geddanstyle" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
+	setTimeout(geddanfixbutton, 1000);
+}
+
+var geddanfixbutton = function(){
+	$('#resetbackground').text("I'M COMING!");
+	$('#resetbackground').removeClass("hinge");
+	$('#resetbackground').addClass("bounceInUpSlow");
+	setTimeout(geddanhalf, 10000);	
+}
+var geddanhalf = function(){
+	$('#resetbackground').text("I'LL SAVE YOU!!!");
+	setTimeout(geddanhalf2, 15000);
+}
+var geddanhalf2 = function(){
+	$('#resetbackground').text("ALMOST THERE!!");
+	setTimeout(geddan2true, 8000);
+}
+var geddan2true = function(){
+	geddanbackground2 = true;
+	$('#resetbackground').text("STOP THE MADNESS!");
 }
 
 //Counter Section
@@ -325,13 +346,12 @@ $.ajax({
 			    	var r = Math.floor(Math.random()*object.data.length);
 					console.log(r);
 					console.log(object.data[r].images.downsized.url);
-					$('body').css('background-image', 'url('+object.data[r].images.downsized.url+')');
+					$('body').css('background-image', 'url('+object.data[r].images.downsized.url+')').css('background-attachment', 'fixed');
 			    	$('.animatethis').addClass("animated rubberBand infinite");
 			    	$('.animated').removeClass("bounceIn");
 			    }
 			    else if(georgebackground){
-					console.log('yes');			
-					$('.animatethis').addClass("animated flip infinite");
+					$('.animatethis').addClass("animated rotate360 infinite");
 				}
 				else if(geddanbackground){
 					$('.animatethis').addClass("animated hinge");
@@ -477,7 +497,7 @@ $.ajax({
 		    }
 		    else if(georgebackground){
 				console.log('george');			
-				$('.animatethis').addClass("animated flip infinite");
+				$('.animatethis').addClass("animated rotate360 infinite");
 			}
 			else if(geddanbackground){
 				$('.animatethis').addClass("animated hinge");
@@ -569,7 +589,7 @@ var buttonclickajax = function(){
 var fadeout = function(){
 	var changeImg = $(this).children().eq(0).children().eq(0);
 	var stillimage = changeImg.attr('data-still');
-	changeImg.attr("src",""+stillimage+"").css('filter', 'brightness(75%)');
+	changeImg.attr("src",""+stillimage+"").css('filter', 'brightness(50%)');
 }
 
 var fadein = function(){

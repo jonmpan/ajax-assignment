@@ -17,8 +17,20 @@
   animation-iteration-count: infinite;
 }
 
+.animated.rubberBand {
+  animation-duration: 1.212s;
+}
+.animated.rotate360 {
+  animation-duration: 1s;
+}
 .animated.hinge {
   animation-duration: 2s;
+}
+.animated.fadeInDown {
+  animation-duration: 2s;
+}
+.animated.bounceInUpSlow {
+  animation-duration: 33s;
 }
 
 .animated.flipOutX,
@@ -26,6 +38,25 @@
 .animated.bounceIn,
 .animated.bounceOut {
   animation-duration: .75s;
+}
+
+@keyframes bounceInUpSlow {
+
+  from {
+    transform: translate3d(0, 800px, 0);
+    opacity: 0;
+  }
+  5% {
+    opacity: .5;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+.bounceInUpSlow {
+  animation-name: bounceInUpSlow;
 }
 
 @keyframes bounce {
@@ -116,6 +147,47 @@
   to {
     transform: scale3d(1, 1, 1);
   }
+}
+
+.rotate360 {
+  animation-timing-function: ease-in-out;
+  animation-name: rotate360;
+}
+
+@keyframes rotate360 {
+  12.5% {
+    transform: rotate3d(0, 0, 1, 45deg);
+  }
+
+  25% {
+    transform: rotate3d(0, 0, 1, 90deg);
+  }
+
+  37.5% {
+    transform: rotate3d(0, 0, 1, 135deg);
+  }
+
+  50% {
+    transform: rotate3d(0, 0, 1, 180deg);
+  }
+
+  62.5% {
+    transform: rotate3d(0, 0, 1, 225deg);
+  }
+  75% {
+    transform: rotate3d(0, 0, 1, 270deg);
+  }
+  87.5% {
+    transform: rotate3d(0, 0, 1, 315deg);
+  }
+  to {
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+
+.swing {
+  transform-origin: top center;
+  animation-name: swing;
 }
 
 .rubberBand {
