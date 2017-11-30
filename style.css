@@ -1,3 +1,17 @@
+#uparrow {
+	width: 50px;
+	position: fixed;
+	top: 10px;
+	left: 10px;
+}
+#uparrow:hover {
+	cursor: pointer;
+	top: 13px;
+	left: 13px;
+	width: 44px;
+	opacity: .8;
+}
+
 .btn, .btn-small, .btn-submit {
 	border: none;
 	font-family: inherit;
