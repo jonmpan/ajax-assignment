@@ -9,10 +9,17 @@
 }
 #uparrow:hover {
 	cursor: pointer;
-	top: 13px;
-	left: 13px;
-	width: 44px;
+}
+
+#uparrow:hover div img {
+	width: 46px;
+	margin-left: 2px;
+	height: 48px;
+	margin-top: 2px;
 	opacity: .8;
+}
+#uparrow:active {
+	filter: brightness(50%);
 }
 
 .btn, .btn-small, .btn-submit {
