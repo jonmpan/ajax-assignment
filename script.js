@@ -83,9 +83,9 @@ var reset = function(){
 	geddanbackground2 = false;
 	georgebackground = false;
 	$('#songplayer').get(0).pause();
-	$('#songplayer').get(0).currentTime=0;
+	// $('#songplayer').get(0).currentTime=0;
 	$('#songplayer2').get(0).pause();
-	$('#songplayer2').get(0).currentTime=0;
+	// $('#songplayer2').get(0).currentTime=0;
 	document.getElementById('geddanvideo').pause();
 	document.getElementById('geddanvideo').currentTime=0;
 	$('#geddanvideo').hide();
@@ -201,7 +201,7 @@ $('#geddan').click(function(){
 		$('.animatethis').removeClass("rubberBand flip infinite");
 		$('.animatethis').addClass("animated hinge");
 		$('#resetbackground').addClass("animated hinge");
-		$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="geddanstyle" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
+		$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="geddanstyle" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo ETERNAaaAAAL LOOOOOoooVE</div><div class="col-xs-1"></div></div>');
 		setTimeout(geddanempty, 2000);
 	}
 	else{
@@ -211,7 +211,7 @@ $('#geddan').click(function(){
 
 var geddanempty = function(){
 	$('#gifs').empty();
-	$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="geddanstyle" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
+	$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="geddanstyle" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo ETERNAaaAAAL LOOOOOoooVE</div><div class="col-xs-1"></div></div>');
 	setTimeout(geddanfixbutton, 1000);
 }
 
