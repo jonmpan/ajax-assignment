@@ -92,7 +92,7 @@ var reset = function(){
 	$('body').css('background-image', '');
 	$('body').css('background', '');
 	$('.animatethis').removeClass("animated rubberBand flip rotate360 hinge infinite");
-	$('#resetbackground').removeClass("animated hinge fadeInDown bounceInUpSlow")
+	$('#resetbackground').removeClass("animated hinge fadeInDown bounceInUpSlow");
 	stopsound();
 }
 
@@ -212,45 +212,51 @@ $('#geddan').click(function(){
 var geddanempty = function(){
 	$('#gifs').empty();
 	$('#gifs').append('<div class="row"><div class="col-xs-1"></div><div id="geddanstyle" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo ETERNAaaAAAL LOOOOOoooVE</div><div class="col-xs-1"></div></div>');
-	setTimeout(geddanfixbutton, 1000);
+	setTimeout(geddanfix0, 1000);
 }
 
-var geddanfixbutton = function(){
-	$('#resetbackground').text("I'M COMING!");
+var geddanfix0 = function(){
+	$('#resetbackground').text("Uh Oh, wut hpnd?!");
 	$('#resetbackground').removeClass("hinge");
-	$('#resetbackground').addClass("bounceInUpSlow");
-	setTimeout(geddanhalf, 10000);	
+	$('#resetbackground').addClass("bounceInUpSlow");	
+	setTimeout(geddanfix1, 8000);
 }
-var geddanhalf = function(){
+
+var geddanfix1 = function(){
+	$('#resetbackground').text("ITS OK! IM COMING!");
+	setTimeout(geddanfix2, 7000);
+		
+}
+var geddanfix2 = function(){
 	$('#resetbackground').text("I'LL SAVE YOU!!!");
-	setTimeout(geddanhalf2, 15000);
+	setTimeout(geddanfix3, 11000);
 }
-var geddanhalf2 = function(){
+var geddanfix3 = function(){
 	$('#resetbackground').text("ALMOST THERE!!");
-	setTimeout(geddan2true, 8000);
+	setTimeout(geddanfix, 7000);
 }
-var geddan2true = function(){
+var geddanfix = function(){
 	geddanbackground2 = true;
 	$('#resetbackground').text("STOP THE MADNESS!");
 }
+//End Geddan
 
 //Counter Section
-$('#onePlus').click(function() {
-	if(imagecount<100){
-	imagecount+=4;
-	$('#imgCounter').text(imagecount);
-	queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+'&offset='+offset+''
-	}
-});
+// $('#onePlus').click(function() {
+// 	if(imagecount<100){
+// 	imagecount+=4;
+// 	$('#imgCounter').text(imagecount);
+// 	queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+'&offset='+offset+''
+// 	}
+// });
 
-$('#oneMinus').click(function() {
-	if(imagecount>12){
-	imagecount-=4;
-	$('#imgCounter').text(imagecount);
-	queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+'&offset='+offset+''
-	}
-});
-
+// $('#oneMinus').click(function() {
+// 	if(imagecount>12){
+// 	imagecount-=4;
+// 	$('#imgCounter').text(imagecount);
+// 	queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+'&offset='+offset+''
+// 	}
+// });
 //End Counter Section
 
 //Form Section
@@ -287,6 +293,7 @@ $('#formButton').click(function(){
 		return;
 	}
 });
+//End Form
 
 //Code for AJAX request and appending images
 function getgifs(){
@@ -329,7 +336,6 @@ $.ajax({
 		    	$('#col2').append('<div class="container-fluid"><div class="row" id="gif'+i2+'"></div></div>');
 		    	$('#col3').append('<div class="container-fluid"><div class="row" id="gif'+i3+'"></div></div>');
 		    }
-
 		    //Appends gifs to proper #gif div
 		    for (var i = 0; i < response.data.length; i++) {
 		    	var mystring = response.data[i].title;
@@ -367,10 +373,10 @@ $.ajax({
 		}
 		//End Append gifs to page
 	});
-
 }
+//End AJAX and gif append
 
-//infinite scrolling
+//Infinite Scrolling
 function getgifspagination(){
 offset += imagecount;
 var queryURL = 'https://api.giphy.com/v1/gifs/search?q='+custom+'&api_key=dc6zaTOxFJmzC&MPAA=R&limit='+imagecount+'&offset='+offset+''
@@ -380,18 +386,19 @@ $.ajax({
     }).done(function(response) {
 	    console.log(response);
 	    object = response;
-		//If no results, show no result screen
+		//If no results, don't append anything
 		if(response.data.length<1){
 			return;
 		}
 		//Append gifs to page
 		else {
-		    //Appends #gif div into the shortest vertical column
+		//Appends #gif div into the shortest vertical column
+		    //Variables for checking column height
 		    var col0H = document.getElementById('col0').clientHeight;
 		    var col1H = document.getElementById('col1').clientHeight;
 		    var col2H = document.getElementById('col2').clientHeight;
 		    var col3H = document.getElementById('col3').clientHeight;
-
+		    //Appends 2 extra gif divs to first column
 		    if(col0H <= col1H && col0H <= col2H && col0H <= col3H){
 		    	console.log('col0 shortest');
 			    for (var i = offset; i<offset+response.data.length-4; i+=4){
@@ -414,6 +421,7 @@ $.ajax({
 		    	}		    	
 
 		    }
+		    //Appends 2 extra gif divs to second column
 		    else if(col1H <= col0H && col1H <= col2H && col1H <= col3H){
 		    	console.log('col1 shortest');
 			    for (var i = offset; i<offset+response.data.length-4; i+=4){
@@ -436,6 +444,7 @@ $.ajax({
 		    	}		    	
 
 		    }
+		    //Appends 2 extra gif divs to third column
 		    else if(col2H <= col0H && col2H <= col1H && col2H <= col3H){
 		    	console.log('col2 shortest');
 			    for (var i = offset; i<offset+response.data.length-4; i+=4){
@@ -458,6 +467,7 @@ $.ajax({
 		    	}		    	
 
 		    }
+		    //Appends 2 extra gif divs to fourth column
 		    else if(col3H <= col0H && col3H <= col1H && col3H <= col2H){
 		    	console.log('col3 shortest');
 			    for (var i = offset; i<offset+response.data.length-4; i+=4){
@@ -492,7 +502,7 @@ $.ajax({
 		    	$('#gif'+i+'').append('<div class="animatethis gifContainer fadeinout"><a href="'+response.data[i-offset].url+'" target="_blank"><img numvalue="'+i+'" src="'+response.data[i-offset].images.downsized.url+'" data-original="'+response.data[i-offset].images.downsized.url+'" data-still="'+response.data[i-offset].images.downsized_still.url+'"><p>'+temptitle+'</p></a></div>');
 		    	$('#gif'+i+'').addClass('animated bounceIn');
 		    }
-	    	//Adds animation/background based on which background is active
+	    	//Adds animation based on which background is active
 		    if(gifbackground){
 		    	var r = Math.floor(Math.random()*object.data.length);
 				$('.animatethis').addClass("animated rubberBand infinite");
@@ -501,12 +511,12 @@ $.ajax({
 				console.log('george');			
 				$('.animatethis').addClass("animated rotate360 infinite");
 			}
-			else if(geddanbackground){
-				$('.animatethis').addClass("animated hinge");
-				stopsound();
-				glassbreak2.play();
-				$('#gifs').prepend('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
-			}
+			// else if(geddanbackground){
+			// 	$('.animatethis').addClass("animated hinge");
+			// 	stopsound();
+			// 	glassbreak2.play();
+			// 	$('#gifs').prepend('<div class="row"><div class="col-xs-1"></div><div id="noresults" class="animated shake infinite col-xs-10">Get Down yureru  mawaru  fureru  setsunai kimochi futari de issho ni nemuru  Winter Land anata dake mitsumete  watashi dake mitsumete asu woOOooOOooOOoo chikau gyutto  dakare  moeru koigokoro hageshiku  maichiru  yuki ni tsutsumarete eien ni aishiteru  kyou yori aishiteru zuttoOOooOOooOOoo  Eternal Love</div><div class="col-xs-1"></div></div>');
+			// }
 		    else{
 		    	return;
 		    }
@@ -614,13 +624,13 @@ $(document).on("mouseover", ".fadeinout", fadeout);
 $(document).on("mouseout", ".fadeinout", fadein);
 //end event listeners for the whole document
 
-//infinitely scroll flag based on scroll location
 //boolean for stopping the page from doing multiple paginations at once
 var paginate = true;
 var paginatetoggle = function(){
 	paginate=true;
 }
 
+//infinite scroll flag based on scroll location
 $(window).scroll(function () {
 	if(!geddanbackground){
 		if ($(window).scrollTop() >= $(document).height() - $(window).height() - 1500) {
